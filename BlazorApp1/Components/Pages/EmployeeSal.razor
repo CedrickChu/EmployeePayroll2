@@ -40,13 +40,20 @@
                 {
                     <p class="text-danger">@errorMessage</p>
                 }
-                <select @bind="selectedYear" class="form-control" style="width:20%;">
-                    <option value="" disabled selected>SELECT YEAR</option>
-                    @foreach (var year in years)
-                    {
-                        <option value="@year">@year</option>
-                    }
-                </select>
+                @if (fiscalYearList != null)
+                {
+                    
+                    <select class="form-select float-right" style="width:20%;" @onchange="OnFiscalYearChanged">
+                        <option value="" disabled selected>Select Year</option>
+                        @foreach (var year in fiscalYearList)
+                        {
+                            <option value="@year.FiscalYear">@year.FiscalYear</option>
+                        }
+                    </select>
+
+
+                }
+
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -62,7 +69,6 @@
                             {
                                 <tr>
                                     <td>@payroll.PayrollId</td>
-                                    <td>@payroll.FiscalYear</td>
                                     <td>@payroll.PeriodDescription</td>
                                 </tr>
                             }
@@ -78,8 +84,7 @@
 </div>
 
 @code {
-    private string selectedYear = ""; 
-    private List<int> years = new() { 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 };
+
     public class IdNumberConverter : JsonConverter<int?>
     {
         public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -100,16 +105,39 @@
         }
     }
 
-    // Payroll class
     public class Payroll
     {
         public string? PeriodDescription { get; set; }
         public int? PayrollId { get; set; }
+        
+    }
+    public class FiscalYearList
+    {
         public int? FiscalYear { get; set; }
         
     }
+    private async Task OnFiscalYearChanged(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out int year))
+        {
+            selectedFiscalYear = year;
+            Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
 
-    // Employee class
+            StateHasChanged(); // Force UI update before making the API call
+
+            if (employee?.idNumber != null)
+            {
+                Console.WriteLine($"Calling FetchPayrollByID with ID: {employee.idNumber}, Year: {selectedFiscalYear}");
+                await FetchPayrollByID(employee.idNumber, selectedFiscalYear);
+            }
+            else
+            {
+                Console.WriteLine("Employee ID is null, cannot fetch payroll.");
+            }
+        }
+    }
+
+
     public class Employee
     {
         public string? username { get; set; }
@@ -121,14 +149,15 @@
         public int? idNumber { get; set; }
     }
 
-    // Component state
     private List<Payroll>? payrollData = new List<Payroll>();
+    private List<FiscalYearList>? fiscalYearList = new List<FiscalYearList>();
+    private int? selectedFiscalYear = null;
+    private int? fiscalYear = null;
     private Employee? employee;
     private string username = "";
     private string password = "";
     private string? errorMessage;
 
-    // Fetch employee ID based on username and password
     private async Task<int?> FetchEmployeeByID()
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
@@ -163,7 +192,6 @@
         }
     }
 
-    // Fetch employee details based on the ID number
     private async Task FetchEmployeeDetail(int? idNumber)
     {
         if (idNumber == null || idNumber == 0)
@@ -211,7 +239,41 @@
         }
     }
 
-    private async Task FetchPayrollByID(int? idNumber)
+    private async Task GetFiscalYear()
+    {
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetPayrollYears");
+            
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                fiscalYearList = JsonSerializer.Deserialize<List<FiscalYearList>>(json); 
+
+                if (fiscalYearList == null || fiscalYearList.Count == 0)
+                {
+                    errorMessage = "Unable to parse or empty fiscalYears data.";
+                }
+            }
+            else
+            {
+                errorMessage = $"Failed to load fiscalYears data. Status code: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private async Task FetchPayrollByID(int? idNumber, int? selectedFiscalYear)
     {
         if (idNumber == null || idNumber == 0)
         {
@@ -229,7 +291,7 @@
             };
 
             var client = new HttpClient(handler);
-            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getpayrolllist/{idNumber}");
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getpayrolllist/{idNumber}/{selectedFiscalYear}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -261,12 +323,24 @@
         if (userId != null)
         {
             await FetchEmployeeDetail(userId);
-            await FetchPayrollByID(userId);
+            await GetFiscalYear();
+            
+            
+            if (selectedFiscalYear != null)
+            {
+                await FetchPayrollByID(userId, selectedFiscalYear);
+                Console.WriteLine(selectedFiscalYear);
+            }
+            else
+            {
+                errorMessage = "Please select a fiscal year.";
+            }
         }
 
         await Task.Delay(100); 
         await JS.InvokeVoidAsync("showModal", "#employeeModal");
     }
+
 
     // Refresh the page
     private async Task RefreshPage()
