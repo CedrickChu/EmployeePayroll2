@@ -1,0 +1,78 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication;
+using BlazorApp1.Components;
+using BlazorExternalAuthGoogle;
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
+    .AddCookie(Constants.Auth.AuthScheme, cookieOptions =>
+    {
+        cookieOptions.Cookie.Name = ".ap.user";
+    })
+    .AddGoogle(GoogleDefaults.AuthenticationScheme, googleOptions =>
+    {
+        googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+        googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!;
+        googleOptions.SignInScheme = Constants.Auth.AuthScheme;
+        googleOptions.AccessDeniedPath = "/external-login-denied";
+    });
+    
+builder.Services.AddSingleton<UserService>();
+
+builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddHttpClient();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Error", createScopeForErrors: true);
+    app.UseHsts();
+}
+
+app.UseStaticFiles();
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseAntiforgery();
+
+app.MapGet("/login", async (HttpContext context) =>
+{
+    var properties = new AuthenticationProperties { RedirectUri = "/" };
+    await context.ChallengeAsync(GoogleDefaults.AuthenticationScheme, properties);
+});
+
+// Logout route
+app.MapGet("/logout", async (HttpContext context) =>
+{
+    await context.SignOutAsync(Constants.Auth.AuthScheme);
+    context.Response.Redirect("/");
+});
+
+app.MapGet("/signin-google", async (HttpContext context) =>
+{
+    var result = await context.AuthenticateAsync(Constants.Auth.AuthScheme);
+    if (result.Succeeded)
+    {
+        context.Response.Redirect("/");
+    }
+    else
+    {
+        context.Response.Redirect("/login");
+    }
+});
+
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
+
+app.Run();

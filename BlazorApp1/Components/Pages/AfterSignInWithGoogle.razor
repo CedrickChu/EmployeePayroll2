@@ -1,0 +1,28 @@
+@page "/after-login-google"
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject UserService UserService
+
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<p>Setting up the auth state...</p>
+
+@code {
+    private string? UserEmail;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity?.IsAuthenticated == true)
+        {
+            UserService.Email = user.FindFirst(ClaimTypes.Email)?.Value;
+            Console.WriteLine($"User Email: {UserService.Email}");
+
+            NavigationManager.NavigateTo("/");
+        }
+    }
+}

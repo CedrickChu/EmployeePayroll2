@@ -1,0 +1,23 @@
+@page "/"
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Http
+@inject NavigationManager Navigation
+@inject IHttpContextAccessor HttpContextAccessor
+@inject UserService UserService
+
+<PageTitle>Home</PageTitle>
+
+<h1>Hello, world!</h1>
+
+@rendermode InteractiveServer
+
+@if (HttpContextAccessor.HttpContext?.User?.Identity?.IsAuthenticated ?? false)
+{
+    <p>Welcome, @HttpContextAccessor.HttpContext.User.Identity.Name!</p>
+    
+    
+    <p>User Email: @UserService.Email</p>
+    
+    <a href="/logout">Logout</a>
+
+}

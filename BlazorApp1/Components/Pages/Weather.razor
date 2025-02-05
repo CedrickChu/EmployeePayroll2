@@ -1,0 +1,183 @@
+﻿@page "/weather"
+@using System.Text.Json
+@using System.Net.Http
+@inject IHttpClientFactory ClientFactory
+
+<PageTitle>Weather</PageTitle>
+
+<h1>Weather</h1>
+
+<p>This component demonstrates showing weather data.</p>
+
+@if (forecast == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Max Temp. (C)</th>
+                <th>Max Temp. (F)</th>
+                <th>Condition
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var day in forecast.forecast?.forecastday ?? new List<ForecastDay>())
+            {
+                <tr>
+                    <td>@day.date</td>
+                    <td>@day.day.maxtemp_c</td>
+                    <td>@(day.day.maxtemp_c * 9 / 5 + 32)</td>
+                    <td class="text-info">@day.day.condition.text
+                        <span><img src="@day.day.condition.icon" alt="icon" style="width: 24px; height: 24px;"></span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p class="text-danger">@errorMessage</p>
+}
+
+<h3>Weather Data</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Property</th>
+            <th>Value</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Location Name</td>
+            <td>@forecast?.location?.name</td>
+        </tr>
+        <tr>
+            <td>Current Temperature (C)</td>
+            <td>@forecast?.current?.temp_c</td>
+        </tr>
+        <tr>
+            <td>Current Temperature (F)</td>
+            <td>@forecast?.current?.temp_f</td>
+        </tr>
+        <tr>
+            <td>Forecast Days Count</td>
+            <td>@forecast?.forecast?.forecastday?.Count</td>
+        </tr>
+        @foreach (var day in forecast?.forecast?.forecastday ?? new List<ForecastDay>())
+        {
+            <tr>
+                <td>Forecast Date</td>
+                <td>@day.date</td>
+            </tr>
+            <tr>
+                <td>Max Temp. (C)</td>
+                <td>@day.day.maxtemp_c</td>
+            </tr>
+            <tr>
+                <td>Max Temp. (F)</td>
+                <td>@(day.day.maxtemp_c * 9 / 5 + 32)</td>
+            </tr>
+            <tr>
+                <td>Condition</td>
+                <td class="text-info">@day.day.condition.text
+                   <span><img src="@day.day.condition.icon" alt="icon" style="width: 24px; height: 24px;"></span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private WeatherApiResponse? forecast;
+    private string? errorMessage;
+
+    private class WeatherApiResponse
+    {
+        public Location? location { get; set; }
+        public Current? current { get; set; }
+        public Forecast? forecast { get; set; }
+    }
+
+    private class Location
+    {
+        public string? name { get; set; }
+    }
+
+    private class Current
+    {
+        public double temp_c { get; set; }
+        public double temp_f => (temp_c * 9 / 5) + 32;
+    }
+
+    private class Forecast
+    {
+        public List<ForecastDay> forecastday { get; set; } = new List<ForecastDay>();
+    }
+
+    public class ForecastDay
+    {
+        public string date { get; set; } = string.Empty;
+        public Day day { get; set; } = new Day();
+    }
+
+    public class Day
+    {
+        public double maxtemp_c { get; set; }
+        public double mintemp_c { get; set; }
+        public double avgtemp_c { get; set; }
+        public Condition condition { get; set; } = new Condition();
+    }
+
+    public class Condition
+    {
+        public string text { get; set; } = string.Empty;
+        public string icon { get; set; } = string.Empty;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchWeather();
+    }
+
+    private async Task FetchWeather()
+    {
+        try
+        {
+            var client = ClientFactory.CreateClient();
+            var response = await client.GetAsync("http://api.weatherapi.com/v1/forecast.json?key=01b236e00442435f8ae21857250302&q=Puerto Princesa&days=7&aqi=no&alerts=no");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Raw JSON response: {json}");
+
+                forecast = JsonSerializer.Deserialize<WeatherApiResponse>(json);
+                Console.WriteLine($"Raw forecast response: {JsonSerializer.Serialize(forecast)}");
+
+                if (forecast == null)
+                {
+                    errorMessage = "Unable to parse weather data.";
+                    Console.WriteLine("Failed to deserialize weather data.");
+                }
+            }
+            else
+            {
+                errorMessage = $"Failed to load weather data. Status code: {response.StatusCode}";
+                Console.WriteLine($"Failed to load data. Status: {response.StatusCode}");
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
