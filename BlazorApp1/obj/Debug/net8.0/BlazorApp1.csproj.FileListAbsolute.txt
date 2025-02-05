@@ -133,6 +133,13 @@ D:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\refint\BlazorApp1.dll
 D:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.pdb
 D:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.genruntimeconfig.cache
 D:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\ref\BlazorApp1.dll
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.csproj.AssemblyReference.cache
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.GeneratedMSBuildEditorConfig.editorconfig
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.AssemblyInfoInputs.cache
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.AssemblyInfo.cs
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.csproj.CoreCompileInputs.cache
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.MvcApplicationPartsAssemblyInfo.cache
+F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.sourcelink.json
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\appsettings.Development.json
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\appsettings.json
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BlazorApp1.staticwebassets.runtime.json
@@ -142,11 +149,13 @@ F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BlazorApp1.deps.json
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BlazorApp1.runtimeconfig.json
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BlazorApp1.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BlazorApp1.pdb
+F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Blazored.SessionStorage.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Google.Protobuf.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\K4os.Compression.LZ4.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\K4os.Compression.LZ4.Streams.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\K4os.Hash.xxHash.dll
+F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Microsoft.AspNetCore.Components.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Microsoft.AspNetCore.Components.Forms.dll
@@ -184,12 +193,6 @@ F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Security.Cryptography.Pkcs.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.csproj.AssemblyReference.cache
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.GeneratedMSBuildEditorConfig.editorconfig
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.AssemblyInfoInputs.cache
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.AssemblyInfo.cs
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.csproj.CoreCompileInputs.cache
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.MvcApplicationPartsAssemblyInfo.cache
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\scopedcss\bundle\BlazorApp1.styles.css
@@ -209,5 +212,3 @@ F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\refint\BlazorApp1.dll
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.pdb
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.genruntimeconfig.cache
 F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\ref\BlazorApp1.dll
-F:\BlazorApp1\BlazorApp1\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
-F:\BlazorApp1\BlazorApp1\obj\Debug\net8.0\BlazorApp1.sourcelink.json

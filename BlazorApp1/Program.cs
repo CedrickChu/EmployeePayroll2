@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
 using BlazorApp1.Components;
 using BlazorExternalAuthGoogle;
+using Blazored.SessionStorage;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddBlazoredSessionStorage();
 builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
     .AddCookie(Constants.Auth.AuthScheme, cookieOptions =>
     {
@@ -18,10 +20,13 @@ builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
         googleOptions.AccessDeniedPath = "/external-login-denied";
     });
     
+
 builder.Services.AddSingleton<UserService>();
 
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
+
+
 
 builder.Services.AddHttpClient();
 builder.Services.AddRazorComponents()

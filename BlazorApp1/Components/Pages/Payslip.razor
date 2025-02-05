@@ -1,4 +1,4 @@
-@page "/employee/payroll/{userId:int}"
+@page "/employee/payroll"
 @rendermode InteractiveServer
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
@@ -7,6 +7,7 @@
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @using BlazorApp1.Models
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
 
 <div class="container-center" style="width:60%; margin:auto;">
@@ -63,11 +64,11 @@
         </tbody>
     </table>
 
-    <a class="btn btn-secondary" href="/employee">Back</a>
+    <button class="btn btn-secondary" @onclick="BackToEmployeePage">Back</button>
+
 </div>
 
 @code {
-    [Parameter] public int? UserId { get; set; }
     public class IdNumberConverter : JsonConverter<int?>
     {
         public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -87,17 +88,44 @@
             writer.WriteStringValue(value?.ToString());
         }
     }
-
+    private int? userId;
     private Employee? employee;
     private List<Payroll>? payrollData;
     private List<FiscalYearList>? fiscalYearList = new List<FiscalYearList>();
     private int? fiscalYear = null;
     private int? selectedFiscalYear = null;
     private string? errorMessage;
+    private bool isInitialized = false;  
+    private bool isLoading = true; 
+
+    private async Task LoadUserIdFromSession()
+    {
+        try
+        {
+            userId = await sessionStorage.GetItemAsync<int?>("UserId");
+
+            if (userId == null || userId == 0)
+            {
+                errorMessage = "User ID is not available or invalid in session storage.";
+                isLoading = false;
+            }
+            else
+            {
+                errorMessage = null;
+                await FetchEmployeeByID();  // Fetch the employee details
+                await InitializeData();     // Initialize other data
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred while accessing session storage: {ex.Message}";
+            isLoading = false;
+        }
+    }
 
     private async Task FetchEmployeeByID()
     {
-        if (UserId == 0)
+        if (userId == null || userId == 0)
         {
             errorMessage = "Employee Not Found";
             return;
@@ -113,12 +141,11 @@
             };
 
             var client = new HttpClient(handler);
-            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getemployeeinfo/{UserId}");
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getemployeeinfo/{userId}");
 
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-
                 var options = new JsonSerializerOptions
                 {
                     Converters = { new IdNumberConverter() }
@@ -142,31 +169,37 @@
         }
     }
 
-    protected override async Task OnInitializedAsync()
+    private async Task InitializeData()
     {
-        if (UserId != 0) 
+        if (userId != null && userId > 0 && !isInitialized)
         {
-            await FetchEmployeeByID();
             await GetFiscalYear();
-            Console.WriteLine($"UserId: {UserId}");
-
-            Console.WriteLine($"Selected Fiscal Year: {selectedFiscalYear}");
+            Console.WriteLine($"UserId: {userId}");
 
             if (selectedFiscalYear != null)
             {
-                await FetchPayrollByID(UserId, selectedFiscalYear);
+                Console.WriteLine($"Selected Fiscal Year: {selectedFiscalYear}");
+                await FetchPayrollByID(userId, selectedFiscalYear);
             }
             else
             {
                 errorMessage = "Please select a fiscal year.";
             }
+
+            isInitialized = true;  
+            isLoading = false;  
+            StateHasChanged();  
         }
         else
         {
-            errorMessage = "Invalid User ID.";
+            errorMessage = "Invalid User ID or already initialized.";
+            isLoading = false;
         }
-        await Task.Delay(100); 
+    }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserIdFromSession();
     }
 
     private async Task GetFiscalYear()
@@ -188,12 +221,12 @@
 
                 if (fiscalYearList == null || fiscalYearList.Count == 0)
                 {
-                    errorMessage = "Unable to parse or empty fiscalYears data.";
+                    errorMessage = "Unable to parse or empty fiscal years data.";
                 }
             }
             else
             {
-                errorMessage = $"Failed to load fiscalYears data. Status code: {response.StatusCode}";
+                errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
             }
         }
         catch (Exception ex)
@@ -206,19 +239,12 @@
     {
         if (int.TryParse(e.Value?.ToString(), out int year))
         {
-            selectedFiscalYear = year;
-            Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
-
-            StateHasChanged();
-
-            if (UserId != null)
+            if (selectedFiscalYear != year)  
             {
-                Console.WriteLine($"Calling FetchPayrollByID with ID: {UserId}, Year: {selectedFiscalYear}");
-                await FetchPayrollByID(UserId, selectedFiscalYear);
-            }
-            else
-            {
-                Console.WriteLine("Employee ID is null, cannot fetch payroll.");
+                selectedFiscalYear = year;
+                Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
+
+                await FetchPayrollByID(userId, selectedFiscalYear);
             }
         }
     }
@@ -246,8 +272,6 @@
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("API Response: " + json);
-
                 payrollData = JsonSerializer.Deserialize<List<Payroll>>(json);
 
                 if (payrollData == null || payrollData.Count == 0)
@@ -266,12 +290,25 @@
         }
     }
 
-    private void BackToEmployeePage()
-    {
-        Navigation.NavigateTo("/employee");
-    }
     private async Task RefreshPage()
     {
         await JS.InvokeVoidAsync("location.reload");
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && isLoading)
+        {
+            await Task.Delay(500); 
+            StateHasChanged();  
+        }
+    }
+    private async Task BackToEmployeePage()
+{
+    await sessionStorage.RemoveItemAsync("UserId");
+    
+
+    Navigation.NavigateTo("/employee");
+}
+
 }

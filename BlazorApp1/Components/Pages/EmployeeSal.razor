@@ -5,6 +5,7 @@
 @inject IJSRuntime JS
 @inject HttpClient Http
 @inject NavigationManager Navigation
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
 <PageTitle>Form</PageTitle>
 
@@ -31,7 +32,7 @@
 
         if (userId != null)
         {
-            Navigation.NavigateTo($"/employee/payroll/{userId}");
+            Navigation.NavigateTo($"/employee/payroll");
         }
     }
 
@@ -54,12 +55,14 @@
 
             var client = new HttpClient(handler);
             var response = await client.GetFromJsonAsync<int?>($"https://10.125.1.6:7087/api/My/getemployeeid/{username}/{password}");
-            Console.WriteLine(response);
 
             if (response == null)
             {
                 errorMessage = "No employee found with the given username and password.";
+                return null;
             }
+
+            await sessionStorage.SetItemAsync("UserId", response);
 
             return response;
         }
