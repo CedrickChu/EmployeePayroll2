@@ -1,7 +1,277 @@
-@page "/payslip"
+@page "/employee/payroll/{userId:int}"
 @rendermode InteractiveServer
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
 @using System.Text.Json.Serialization;
 @inject IJSRuntime JS
 @inject HttpClient Http
+@inject NavigationManager Navigation
+@using BlazorApp1.Models
+
+
+<div class="container-center" style="width:60%; margin:auto;">
+    <h1>Employee Details</h1>
+
+    @if (employee != null)
+    {
+        <p>ID Number: @employee.idNumber</p>
+        <p>First Name: @employee.firstName</p>
+        <p>Last Name: @employee.lastName</p>
+        <p>Middle Name: @employee.middleName</p>
+    }
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p class="text-danger">@errorMessage</p>
+    }
+
+     @if (fiscalYearList != null)
+    {
+        
+        <select class="form-select float-right" style="width:20%;" @onchange="OnFiscalYearChanged">
+            <option value="" disabled selected>Select Year</option>
+            @foreach (var year in fiscalYearList)
+            {
+                <option value="@year.FiscalYear">@year.FiscalYear</option>
+            }
+        </select>
+
+
+    }
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>TRANSACTION NO</th>
+                <th>FISCAL YEAR</th>
+                <th>DESCRIPTION</th>
+                <th>PAYSLIP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (payrollData != null)
+            {
+                @foreach (var payroll in payrollData)
+                {
+                    <tr>
+                        <td>@payroll.PayrollId</td>
+                        <td>@payroll.FiscalYear</td>
+                        <td>@payroll.PeriodDescription</td>
+                        <td><a href="#example">View Details...</a></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <a class="btn btn-secondary" href="/employee">Back</a>
+</div>
+
+@code {
+    [Parameter] public int? UserId { get; set; }
+    public class IdNumberConverter : JsonConverter<int?>
+    {
+        public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                if (int.TryParse(reader.GetString(), out int result))
+                {
+                    return result;
+                }
+            }
+            return null;
+        }
+
+        public override void Write(Utf8JsonWriter writer, int? value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value?.ToString());
+        }
+    }
+
+    private Employee? employee;
+    private List<Payroll>? payrollData;
+    private List<FiscalYearList>? fiscalYearList = new List<FiscalYearList>();
+    private int? fiscalYear = null;
+    private int? selectedFiscalYear = null;
+    private string? errorMessage;
+
+    private async Task FetchEmployeeByID()
+    {
+        if (UserId == 0)
+        {
+            errorMessage = "Employee Not Found";
+            return;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getemployeeinfo/{UserId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+
+                var options = new JsonSerializerOptions
+                {
+                    Converters = { new IdNumberConverter() }
+                };
+
+                employee = JsonSerializer.Deserialize<Employee>(json, options);
+
+                if (employee == null)
+                {
+                    errorMessage = "Unable to parse employee data.";
+                }
+            }
+            else
+            {
+                errorMessage = "Failed to fetch employee details.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserId != 0) 
+        {
+            await FetchEmployeeByID();
+            await GetFiscalYear();
+            Console.WriteLine($"UserId: {UserId}");
+
+            Console.WriteLine($"Selected Fiscal Year: {selectedFiscalYear}");
+
+            if (selectedFiscalYear != null)
+            {
+                await FetchPayrollByID(UserId, selectedFiscalYear);
+            }
+            else
+            {
+                errorMessage = "Please select a fiscal year.";
+            }
+        }
+        else
+        {
+            errorMessage = "Invalid User ID.";
+        }
+        await Task.Delay(100); 
+
+    }
+
+    private async Task GetFiscalYear()
+    {
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetPayrollYears");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                fiscalYearList = JsonSerializer.Deserialize<List<FiscalYearList>>(json);
+
+                if (fiscalYearList == null || fiscalYearList.Count == 0)
+                {
+                    errorMessage = "Unable to parse or empty fiscalYears data.";
+                }
+            }
+            else
+            {
+                errorMessage = $"Failed to load fiscalYears data. Status code: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private async Task OnFiscalYearChanged(ChangeEventArgs e)
+    {
+        if (int.TryParse(e.Value?.ToString(), out int year))
+        {
+            selectedFiscalYear = year;
+            Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
+
+            StateHasChanged();
+
+            if (UserId != null)
+            {
+                Console.WriteLine($"Calling FetchPayrollByID with ID: {UserId}, Year: {selectedFiscalYear}");
+                await FetchPayrollByID(UserId, selectedFiscalYear);
+            }
+            else
+            {
+                Console.WriteLine("Employee ID is null, cannot fetch payroll.");
+            }
+        }
+    }
+
+    private async Task FetchPayrollByID(int? idNumber, int? selectedFiscalYear)
+    {
+        if (idNumber == null || idNumber == 0)
+        {
+            errorMessage = "Employee Not Found";
+            return;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getpayrolllist/{idNumber}/{selectedFiscalYear}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("API Response: " + json);
+
+                payrollData = JsonSerializer.Deserialize<List<Payroll>>(json);
+
+                if (payrollData == null || payrollData.Count == 0)
+                {
+                    errorMessage = "No payroll data found for this employee.";
+                }
+            }
+            else
+            {
+                errorMessage = "Failed to fetch payroll details.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+
+    private void BackToEmployeePage()
+    {
+        Navigation.NavigateTo("/employee");
+    }
+    private async Task RefreshPage()
+    {
+        await JS.InvokeVoidAsync("location.reload");
+    }
+}
