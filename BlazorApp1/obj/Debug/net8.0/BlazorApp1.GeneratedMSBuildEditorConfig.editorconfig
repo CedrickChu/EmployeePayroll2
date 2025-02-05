@@ -55,6 +55,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xJbmRleC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[f:/BlazorApp1/BlazorApp1/Components/Pages/Payslip.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQYXlzbGlwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [f:/BlazorApp1/BlazorApp1/Components/Pages/SignInWithGoogle.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaWduSW5XaXRoR29vZ2xlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

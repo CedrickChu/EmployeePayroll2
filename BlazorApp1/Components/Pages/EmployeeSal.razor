@@ -54,12 +54,13 @@
 
                 }
 
-                <table class="table table-striped">
+                <table class="table">
                     <thead>
                         <tr>
-                            <th>PAYROLL ID</th>
+                            <th>TRANSACTION NO</th>
                             <th>FISCAL YEAR</th>
                             <th>DESCRIPTION</th>
+                            <th>PAYSLIP</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,7 +70,9 @@
                             {
                                 <tr>
                                     <td>@payroll.PayrollId</td>
+                                    <td>@payroll.FiscalYear</td>
                                     <td>@payroll.PeriodDescription</td>
+                                    <td><a href="#example" >View Details...</a></td>
                                 </tr>
                             }
                         }
@@ -109,6 +112,8 @@
     {
         public string? PeriodDescription { get; set; }
         public int? PayrollId { get; set; }
+        public int? FiscalYear { get; set; }
+
         
     }
     public class FiscalYearList
@@ -122,13 +127,14 @@
         {
             selectedFiscalYear = year;
             Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
+            int? userId = await FetchEmployeeByID();
 
-            StateHasChanged(); // Force UI update before making the API call
+            StateHasChanged();
 
-            if (employee?.idNumber != null)
+            if (userId != null)
             {
-                Console.WriteLine($"Calling FetchPayrollByID with ID: {employee.idNumber}, Year: {selectedFiscalYear}");
-                await FetchPayrollByID(employee.idNumber, selectedFiscalYear);
+                Console.WriteLine($"Calling FetchPayrollByID with ID: {userId}, Year: {selectedFiscalYear}");
+                await FetchPayrollByID(userId, selectedFiscalYear);
             }
             else
             {
@@ -324,12 +330,13 @@
         {
             await FetchEmployeeDetail(userId);
             await GetFiscalYear();
+            Console.WriteLine(userId);
             
             
             if (selectedFiscalYear != null)
             {
                 await FetchPayrollByID(userId, selectedFiscalYear);
-                Console.WriteLine(selectedFiscalYear);
+                
             }
             else
             {
@@ -342,7 +349,6 @@
     }
 
 
-    // Refresh the page
     private async Task RefreshPage()
     {
         await JS.InvokeVoidAsync("location.reload");
