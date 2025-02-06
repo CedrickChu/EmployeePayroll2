@@ -10,3 +10,4 @@ function resetStudentIdInput(inputId) {
 window.initSelectize = (id) => {
     $('#' + id).selectize();
 };
+
