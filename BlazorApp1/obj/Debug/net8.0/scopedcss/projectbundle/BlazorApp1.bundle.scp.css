@@ -10,7 +10,7 @@ main[b-j65y7q72mt] {
 }
 
 .sidebar[b-j65y7q72mt] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(180deg, rgb(231, 111, 13) 0%, #d86d16 70%);
 }
 
 .top-row[b-j65y7q72mt] {
@@ -182,7 +182,7 @@ main[b-j65y7q72mt] {
 .nav-scrollable[b-5bndfk4shp] {
     display: none;
     background: rgb(239,164,135);
-    background: linear-gradient(180deg, rgba(239,164,135,1) 35%, rgba(191,68,1,0.9444152661064426) 100%);
+    background: linear-gradient(180deg, rgb(239, 172, 135) 35%, rgba(199, 90, 32, 0.944) 100%);
 
 
 }

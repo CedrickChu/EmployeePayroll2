@@ -15,19 +15,37 @@
 
     @if (employee != null)
     {
-        <p>ID Number: @employee.idNumber</p>
-        <p>First Name: @employee.firstName</p>
-        <p>Last Name: @employee.lastName</p>
-        <p>Middle Name: @employee.middleName</p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card p-4">
+                        <h4 class="text-center mb-4">Employee Details</h4>
+                        <div class="row">
+                            <!-- First Column -->
+                            <div class="col-6">
+                                <p><strong>ID Number:</strong> @employee.idNumber</p>
+                                <p><strong>First Name:</strong> @employee.firstName</p>
+                            </div>
+                            <!-- Second Column -->
+                            <div class="col-6">
+                                <p><strong>Last Name:</strong> @employee.lastName</p>
+                                <p><strong>Middle Name:</strong> @employee.middleName</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     }
     @if (!string.IsNullOrEmpty(errorMessage))
     {
         <p class="text-danger">@errorMessage</p>
     }
 
-     @if (fiscalYearList != null)
+    @if (fiscalYearList != null)
     {
-        
+
         <select class="form-select float-right" style="width:20%;" @onchange="OnFiscalYearChanged">
             <option value="" disabled selected>Select Year</option>
             @foreach (var year in fiscalYearList)
@@ -57,16 +75,62 @@
                         <td>@payroll.PayrollId</td>
                         <td>@payroll.FiscalYear</td>
                         <td>@payroll.PeriodDescription</td>
-                        <td><a href="#example">View Details...</a></td>
+                        <button class="btn btn-info" @onclick="() => OpenModal(payroll.PayrollId)">View Details...</button>
+
                     </tr>
                 }
             }
         </tbody>
     </table>
-
     <button class="btn btn-secondary" @onclick="BackToEmployeePage">Back</button>
 
+    <div class="modal fade" id="payrollModal" tabindex="-1" aria-labelledby="payrollModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Employee Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        @if (payrollModel != null && employeeInfo != null)
+                        {
+                            <div class="col">
+                                @foreach (var info in employeeInfo)
+                                {
+                                    <p>Full Name: @info.FullName</p>
+                                    <p>Detail ID: @info.DetailId</p>
+                                    <p>Salary: @info.Salary</p>
+                                    <p>Day Absent: @info.DayAbsent</p>
+                                    <p>Minute Absent: @info.MinuteAbsent</p>
+                                    <p>Hour Absent: @info.HourAbsent</p>
+                                    <p>Amount Earned: @info.AmountEarned</p>
+                                    <p>Period Description: @info.PeriodDescription</p>
+                                    <p>Employee Position: @info.EmployeePosition</p>
+                                    <p>Employee Number: @info.EmployeeNumber</p>
+                                }
+                            </div>
+                        }
+
+                        @if (payrollModel != null && payslipDetails != null)
+                        {
+                            <div class="col">
+                                @foreach (var pay in payslipDetails)
+                                {
+                                    <p>Deduction Description: @pay.DeductionDescription</p>
+                                    <p>Amount: @pay.Amount</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @code {
     public class IdNumberConverter : JsonConverter<int?>
@@ -92,11 +156,16 @@
     private Employee? employee;
     private List<Payroll>? payrollData;
     private List<FiscalYearList>? fiscalYearList = new List<FiscalYearList>();
+    private List<PayslipDetails>? payslipDetails = new List<PayslipDetails>();
+    private List<EmployeeInfo>? employeeInfo = new List<EmployeeInfo>();
+    private PayrollModel? payrollModel;
     private int? fiscalYear = null;
+    private int? PayrollId;
     private int? selectedFiscalYear = null;
     private string? errorMessage;
-    private bool isInitialized = false;  
-    private bool isLoading = true; 
+    private bool isInitialized = false;
+    private bool isLoading = true;
+    private bool showModal = false;
 
     private async Task LoadUserIdFromSession()
     {
@@ -112,8 +181,8 @@
             else
             {
                 errorMessage = null;
-                await FetchEmployeeByID();  // Fetch the employee details
-                await InitializeData();     // Initialize other data
+                await FetchEmployeeByID();
+                await InitializeData();
             }
         }
         catch (Exception ex)
@@ -186,9 +255,9 @@
                 errorMessage = "Please select a fiscal year.";
             }
 
-            isInitialized = true;  
-            isLoading = false;  
-            StateHasChanged();  
+            isInitialized = true;
+            isLoading = false;
+            StateHasChanged();
         }
         else
         {
@@ -239,7 +308,7 @@
     {
         if (int.TryParse(e.Value?.ToString(), out int year))
         {
-            if (selectedFiscalYear != year)  
+            if (selectedFiscalYear != year)
             {
                 selectedFiscalYear = year;
                 Console.WriteLine($"Selected Fiscal Year Updated: {selectedFiscalYear}");
@@ -289,26 +358,74 @@
             errorMessage = $"An error occurred: {ex.Message}";
         }
     }
-
-    private async Task RefreshPage()
+    private async Task FetchPayrollDetail(int? payslipId, int? idNumber)
     {
-        await JS.InvokeVoidAsync("location.reload");
+        if (idNumber == null || idNumber == 0)
+        {
+            errorMessage = "Employee Not Found";
+            return;
+        }
+        if (payslipId == null || payslipId == 0)
+        {
+            errorMessage = "Employee Not Found";
+            return;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getpayslip/{payslipId}/{idNumber}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                payrollModel = JsonSerializer.Deserialize<PayrollModel>(json);
+                Console.WriteLine("payrollModel: " + payrollModel);
+                employeeInfo = payrollModel.EmployeeInfo;
+                payslipDetails = payrollModel.PayslipDetails;
+
+
+            }
+            else
+            {
+                errorMessage = "Failed to fetch payroll details.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
     }
+    private async Task OpenModal(int? payslipId)
+    {
+        await FetchPayrollDetail(payslipId, userId);
+        await Task.Delay(100);
+        await JS.InvokeVoidAsync("showModal", "#payrollModal");
+    }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender && isLoading)
         {
-            await Task.Delay(500); 
-            StateHasChanged();  
+            await Task.Delay(500);
+            StateHasChanged();
         }
     }
     private async Task BackToEmployeePage()
-{
-    await sessionStorage.RemoveItemAsync("UserId");
-    
+    {
+        await sessionStorage.RemoveItemAsync("UserId");
 
-    Navigation.NavigateTo("/employee");
-}
+
+        Navigation.NavigateTo("/employee");
+    }
 
 }
+<script src="site.js"></script>

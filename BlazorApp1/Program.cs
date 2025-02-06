@@ -34,6 +34,10 @@ builder.Services.AddRazorComponents()
 
 var app = builder.Build();
 
+app.Urls.Add("http://0.0.0.0:5000");
+app.Urls.Add("http://0.0.0.0:7215");
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
