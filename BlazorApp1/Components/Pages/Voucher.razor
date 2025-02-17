@@ -1,0 +1,273 @@
+@page "/voucher"
+@rendermode InteractiveServer
+@using System.Text.Json
+@inject IHttpClientFactory ClientFactory
+@using System.Text.Json.Serialization;
+@inject IJSRuntime JS
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@using BlazorApp1.Models
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+
+<div class="container-center" style="width:80%; margin:auto;">
+
+    <h1 class="mb-5">Employee Details</h1>
+
+
+    @if (employee != null)
+    {
+        <div class="row justify-content-center">
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>ID Number</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.idNumber</div>
+            </div>
+
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>First Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.firstName</div>
+            </div>
+
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>Last Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.lastName</div>
+            </div>
+
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>Middle Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.middleName</div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Voucher ID: </th>
+                        <th>Payee Name: </th>
+                        <th>Voucher Type</th>
+                        <th>Voucher Number</th>
+                        <th>Voucher Date Description</th>
+                        <th>Voucher Location</th>
+                        <th>Obligation Number</th>
+                        <th>Obligation Date</th>
+                        <th>Check Number</th>
+                        <th>Check Date</th>
+                        <th>Gross Amount</th>
+                        <th>Net Amount</th>
+                        <th>Fund Description</th>
+                        <th>Particulars</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (vouchers != null && vouchers.Count > 0)
+
+                    {
+                         @foreach (var voucher in vouchers)
+                        {
+                            <tr>
+                                <td class="text-center">@voucher.VoucherId</td>
+                                <td class="text-center">@voucher.PayeeName</td>
+                                <td class="text-center">@voucher.VoucherType</td>
+                                <td class="text-center">@voucher.VoucherNumber</td>
+                                <td class="text-center">@voucher.VoucherDateDescription</td>
+                                <td class="text-center">@voucher.VoucherLocation</td>
+                                <td class="text-center">@voucher.ObligationNumber</td>
+                                <td class="text-center">@voucher.ObligationDate</td>
+                                <td class="text-center">@voucher.CheckNumber</td>
+                                <td class="text-center">@voucher.CheckDate</td>
+                                <td class="text-center">@voucher.GrossAmount</td>
+                                <td class="text-center">@voucher.NetAmount</td>
+                                <td class="text-center">@voucher.FundDescription</td>
+                                <td class="text-center">@voucher.Particulars</td>
+                                <td class="text-center">@voucher.Remarks</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    public class IdNumberConverter : JsonConverter<int?>
+    {
+        public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                if (int.TryParse(reader.GetString(), out int result))
+                {
+                    return result;
+                }
+            }
+            return null;
+        }
+
+        public override void Write(Utf8JsonWriter writer, int? value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value?.ToString());
+        }
+    }
+    private int? userId;
+    private Employee? employee;
+    private List<Vouchers>? vouchers = new List<Vouchers>();
+    private int? payeeId;
+    private string? errorMessage;
+    private bool isLoading = true;
+    private bool showModal = false;
+
+    private async Task LoadUserIdFromSession()
+    {
+        try
+        {
+            userId = await sessionStorage.GetItemAsync<int?>("UserId");
+            payeeId = await sessionStorage.GetItemAsync<int?>("PayeeId");
+            if (userId == null || userId == 0)
+            {
+                errorMessage = "User ID is not available or invalid in session storage.";
+                isLoading = false;
+            }
+            else
+            {
+                errorMessage = null;
+                await FetchEmployeeByID();
+                await GetVoucher();               
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred while accessing session storage: {ex.Message}";
+            isLoading = false;
+        }
+    }
+
+    private async Task FetchEmployeeByID()
+    {
+        if (userId == null || userId == 0)
+        {
+            errorMessage = "Employee Not Found";
+            return;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var handler = new HttpClientHandler()
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getemployeeinfo/{userId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                
+                var options = new JsonSerializerOptions
+                {
+                    Converters = { new IdNumberConverter() }
+                };
+
+                employee = JsonSerializer.Deserialize<Employee>(json, options);
+
+                if (employee == null)
+                {
+                    errorMessage = "Unable to parse employee data.";
+                }
+            }
+            else
+            {
+                errorMessage = "Failed to fetch employee details.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+    private async Task GetVoucher()
+{
+    try
+    {
+        var handler = new HttpClientHandler()
+        {
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+        };
+
+        var client = new HttpClient(handler);
+        var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetVouchers/{payeeId}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            
+            Console.WriteLine($"Response JSON: {json}"); 
+
+            if (string.IsNullOrEmpty(json))
+            {
+                errorMessage = "No data returned from the API.";
+                return;
+            }
+
+           var options = new JsonSerializerOptions
+            {
+                Converters = { new IdNumberConverter() }
+            };
+
+
+            vouchers = JsonSerializer.Deserialize<List<Vouchers>>(json, options);
+
+            if (vouchers == null || vouchers.Count == 0)
+            {
+                errorMessage = "Unable to parse or empty fiscal years data.";
+            }
+            else
+            {
+                StateHasChanged(); // Trigger UI update
+            }
+        }
+        else
+        {
+            errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
+        }
+    }
+    catch (Exception ex)
+    {
+        errorMessage = $"An error occurred: {ex.Message}";
+    }
+}
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadUserIdFromSession();
+    }
+
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && isLoading)
+        {
+            await Task.Delay(500);
+            StateHasChanged();
+        }
+    }
+    private async Task BackToEmployeePage()
+    {
+        await sessionStorage.RemoveItemAsync("UserId");
+
+
+        Navigation.NavigateTo("/");
+    }
+}

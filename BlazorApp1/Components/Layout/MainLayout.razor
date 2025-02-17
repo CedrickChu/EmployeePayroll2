@@ -1,19 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
+
 <div class="page">
     <div class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <header class="d-flex flex-wrap justify-content-start border-bottom sticky-top" style="background-color: rgb(248, 236, 228);">
-            <a href="/"
-                class="d-flex align-items-center link-body-emphasis text-decoration-none my-3" >
+        <header class="d-none d-md-flex flex-wrap justify-content-between align-items-center border-bottom sticky-top shadow-sm p-3 mb-5 bg-body-tertiary rounded" style="background-color: rgb(248, 236, 228);">
+            <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none my-3">
                 <svg class="bi me-2" width="40" height="32">
                     <img src="images/logo.png" alt="Logo" style="height: 80px; width: auto;">
                 </svg>
-                <h1 style="font-weight: bold; margin-left: 20px;"><span style="color: rgb(243, 115, 29);">My</span>ACCES</h1>
+                <h1 style="font-weight: bold; margin-left: 20px;">
+                    <span style="color: rgb(243, 115, 29);">My</span>ACCES
+                </h1>
             </a>
+
+            <!-- Logout button aligned to the right -->
         </header>
 
         <article class="content px-4">
@@ -27,3 +31,4 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+

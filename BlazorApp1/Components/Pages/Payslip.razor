@@ -1,4 +1,4 @@
-@page "/employee/payroll"
+@page "/payroll"
 @rendermode InteractiveServer
 @using System.Text.Json
 @inject IHttpClientFactory ClientFactory
@@ -11,39 +11,40 @@
 
 
 <div class="container-center" style="width:80%; margin:auto;">
+
     <h1 class="mb-5">Employee Details</h1>
 
     @if (employee != null)
     {
-    <div class="row justify-content-center">
-        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-            <div class="p-2"><strong>ID Number</strong></div>
-        </div>
-        <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-            <div class="p-2">@employee.idNumber</div>
-        </div>
+        <div class="row justify-content-center">
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>ID Number</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.idNumber</div>
+            </div>
 
-        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-            <div class="p-2"><strong>First Name</strong></div>
-        </div>
-        <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-            <div class="p-2">@employee.firstName</div>
-        </div>
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>First Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.firstName</div>
+            </div>
 
-        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-            <div class="p-2"><strong>Last Name</strong></div>
-        </div>
-        <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-            <div class="p-2">@employee.lastName</div>
-        </div>
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>Last Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.lastName</div>
+            </div>
 
-        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-            <div class="p-2"><strong>Middle Name</strong></div>
+            <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                <div class="p-2"><strong>Middle Name</strong></div>
+            </div>
+            <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                <div class="p-2">@employee.middleName</div>
+            </div>
         </div>
-        <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-            <div class="p-2">@employee.middleName</div>
-        </div>
-    </div>
 
 
     }
@@ -55,83 +56,89 @@
     @if (fiscalYearList != null)
     {
 
-        <select class="form-select float-right" style="width:20%;" @onchange="OnFiscalYearChanged">
+        <select class="form-select float-right" style="width:150px;" @onchange="OnFiscalYearChanged">
             <option value="" disabled selected>Select Year</option>
             @foreach (var year in fiscalYearList)
             {
                 <option value="@year.FiscalYear">@year.FiscalYear</option>
             }
         </select>
+        <br>
 
 
     }
-
-    <table class="table" id="dataTable">
-        <thead>
-            <tr>
-                <th  class="text-center">TRANSACTION NO</th>
-                <th  class="text-center">FISCAL YEAR</th>
-                <th>DESCRIPTION</th>
-                <th class="text-center">PAYSLIP</th>
-            </tr>
-        </thead>
-        <tbody >
-            @if (payrollData != null)
-            {
-                @foreach (var payroll in payrollData)
+    <div class="table-responsive">
+        <table class="table" id="dataTable">
+            <thead>
+                <tr>
+                    <th class="text-center">TRANSACTION NO</th>
+                    <th class="text-center">FISCAL YEAR</th>
+                    <th>DESCRIPTION</th>
+                    <th class="text-center">PAYSLIP</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (payrollData != null)
                 {
-                    <tr>
-                        <td class="text-center">@payroll.PayrollId</td>
-                        <td class="text-center">@payroll.FiscalYear</td>
-                        
-                        <td>
-                           @payroll.PeriodDescription
+                    @foreach (var payroll in payrollData)
+                    {
+                        <tr>
+                            <td class="text-center">@payroll.PayrollId</td>
+                            <td class="text-center">@payroll.FiscalYear</td>
 
-                        </td>
-                        <td class="text-center">
-                            <button class="myButton" @onclick="() => OpenModal(payroll.PayrollId)" >View Details...</button>
-                        </td>
-                    </tr>
+                            <td>
+                                @payroll.PeriodDescription
+
+                            </td>
+                            <td class="text-center">
+                                <button class="myButton" @onclick="() => OpenModal(payroll.PayrollId)">View Details...</button>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        </div>
     <button class="btn btn-secondary" @onclick="BackToEmployeePage">Back</button>
 
     <div class="modal fade" id="payrollModal" tabindex="-1" aria-labelledby="payrollModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Employee Details</h5>
-                </div>
                 <div class="modal-body">
                     <div class="row">
                         @if (payrollModel != null && employeeInfo != null)
                         {
                             <div class="col">
+                                <h1 class="mb-3">Employee Details</h1>
+                                <hr style="width:80%;">
+                                <br>
                                 @foreach (var info in employeeInfo)
                                 {
-                                    <p>Full Name: @info.FullName</p>
-                                    <p>Detail ID: @info.DetailId</p>
-                                    <p>Salary: @info.Salary</p>
-                                    <p>Day Absent: @info.DayAbsent</p>
-                                    <p>Minute Absent: @info.MinuteAbsent</p>
-                                    <p>Hour Absent: @info.HourAbsent</p>
-                                    <p>Amount Earned: @info.AmountEarned</p>
-                                    <p>Period Description: @info.PeriodDescription</p>
-                                    <p>Employee Position: @info.EmployeePosition</p>
-                                    <p>Employee Number: @info.EmployeeNumber</p>
+                                    <p><strong>Full Name: </strong>@info.FullName</p>
+                                    <p><strong>Detail ID: </strong>@info.DetailId</p>
+                                    <p><strong>Salary: </strong>@info.Salary</p>
+                                    <p><strong>Day Absent: </strong>@info.DayAbsent</p>
+                                    <p><strong>Minute Absent: </strong>@info.MinuteAbsent</p>
+                                    <p><strong>Hour Absent: </strong> @info.HourAbsent</p>
+                                    <p><strong>Amount Earned: </strong>@info.AmountEarned</p>
+                                    <p><strong>Period Description: </strong>@info.PeriodDescription</p>
+                                    <p><strong>Employee Position: </strong> @info.EmployeePosition</p>
+                                    <p><strong>Employee Number: </strong>@info.EmployeeNumber</p>
                                 }
                             </div>
                         }
 
                         @if (payrollModel != null && payslipDetails != null)
+
                         {
+
                             <div class="col">
+                                <h1 class="mb-3">Payslip Details</h1>
+                                <hr style="width:80%;"><br>
                                 @foreach (var pay in payslipDetails)
                                 {
-                                    <p>Deduction Description: @pay.DeductionDescription</p>
-                                    <p>Amount: @pay.Amount</p>
+                                    <p><strong>Deduction Description: </strong>@pay.DeductionDescription</p>
+                                    <p><strong>Amount: </strong>@pay.Amount</p>
                                 }
                             </div>
                         }
@@ -401,7 +408,6 @@
             {
                 var json = await response.Content.ReadAsStringAsync();
                 payrollModel = JsonSerializer.Deserialize<PayrollModel>(json);
-                Console.WriteLine("payrollModel: " + payrollModel);
                 employeeInfo = payrollModel.EmployeeInfo;
                 payslipDetails = payrollModel.PayslipDetails;
 
@@ -438,7 +444,7 @@
         await sessionStorage.RemoveItemAsync("UserId");
 
 
-        Navigation.NavigateTo("/employee");
+        Navigation.NavigateTo("/");
     }
 
 }

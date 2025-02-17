@@ -8,7 +8,7 @@ public static class Constants
     }
     public static class Claims
     {
-        public const string UserId = "useId";
+        public const string UserId = "userId";
     }
 
 }

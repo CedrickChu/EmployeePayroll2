@@ -84,7 +84,7 @@
 .nav-scrollable {
     display: none;
     background: rgb(239,164,135);
-    background: linear-gradient(180deg, rgb(239, 172, 135) 35%, rgba(199, 90, 32, 0.944) 100%);
+    background: linear-gradient(180deg, rgb(239, 172, 135) 35%, rgba(243, 168, 128, 0.944) 100%);
 
 
 }
@@ -104,6 +104,6 @@
 
         /* Allow sidebar to scroll for tall menus */
         height: calc(100vh - 3.5rem);
-        overflow-y: auto;
+        overflow-y: none;
     }
 }

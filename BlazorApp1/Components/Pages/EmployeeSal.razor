@@ -1,7 +1,10 @@
-@page "/employee"
+@page "/"
+@using BlazorApp1.Components.Layout
+@layout LoginLayout
+
 @rendermode InteractiveServer
 @using System.Text.Json
-@inject IHttpClientFactory ClientFactory
+@inject IHttpClientFactory ClientFactory    
 @inject IJSRuntime JS
 @inject HttpClient Http
 @inject NavigationManager Navigation
@@ -13,18 +16,15 @@
 <section class="login text-center">
 
 
-
-
     <!-- Jumbotron -->
-    <div class="container-fluid py-4 w-50">
-
-                <div class="card cascading-right bg-body-tertiary" style="
-            backdrop-filter: blur(30px);
-            ">
-                    <div class="card-body p-5 shadow-5 text-center">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-6">
+        <div class="card cascading-right bg-body-tertiary"
+                <div class="card-body p-5 shadow-5 text-center">
+        
                         <h2 class="fw-bold mb-5">Login Form</h2>
-
-
+                            
                             <!-- Email input -->
                             <div data-mdb-input-init class="form-outline mb-4">
                                 <label class="form-label text-start d-block" for="employeeIdInput">Email Address</label>
@@ -55,33 +55,23 @@
 
 
 
-                                <button class="btn rounded-pill px-3 py-2" style="background-color: #eecbbdf3;">
-                                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"
+                                
+                                    <a href="/login-google" class="btn rounded-pill px-3 py-2" style="background-color: #eecbbdf3;">
+                                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"
                                         style="height: 24px; width: 24px;">
                                     <span class="ms-2">Continue with Google</span>
-                                </button>
+                                    </a>
+                                    
 
                             </div>
                     </div>
+                </div>
+                </div>
                 </div>
     </div>
     <!-- Jumbotron -->
 </section>
 <!-- Section: Design Block -->
-
-
-@* <div class="container-center" style="width:60%; margin:auto;">
-    <h1>API Example</h1>
-
-    <div class="form-group">
-        <label for="employeeIdInput" class="form-label">Enter Username</label>
-        <input type="text" class="form-control" style='width:40%;' id="employeeIdInput" @bind="username" placeholder="username" />
-        <label for="employeePasswordInput" class="form-label">Enter Password</label>
-        <input type="password" class="form-control" style='width:40%;' id="employeePasswordInput" @bind="password" placeholder="password" />
-    </div><br>
-    <button class="btn btn-primary" @onclick="NavigateToEmployeeDetails">Open</button>
-</div> *@
-
 @code {
     private string username = "";
     private string password = "";
@@ -89,15 +79,20 @@
 
     private async Task NavigateToEmployeeDetails()
     {
-        int? userId = await FetchEmployeeByID();
-
+        int? userId = await FetchEmployeeID();
+        
         if (userId != null)
         {
-            Navigation.NavigateTo($"/employee/payroll");
+            int? payeeId = await GetPayeeId(userId);
+            if (payeeId != null)
+            {
+                
+                Navigation.NavigateTo("/payroll");
+            }
         }
     }
 
-    private async Task<int?> FetchEmployeeByID()
+    private async Task<int?> FetchEmployeeID()
     {
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
         {
@@ -109,12 +104,12 @@
 
         try
         {
-            var handler = new HttpClientHandler()
+            var handler = new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
             };
 
-            var client = new HttpClient(handler);
+            using var client = new HttpClient(handler);
             var response = await client.GetFromJsonAsync<int?>($"https://10.125.1.6:7087/api/My/getemployeeid/{username}/{password}");
 
             if (response == null)
@@ -124,7 +119,37 @@
             }
 
             await sessionStorage.SetItemAsync("UserId", response);
+            return response;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+            return null;
+        }
+    }
 
+    private async Task<int?> GetPayeeId(int? userId) 
+    {
+        errorMessage = null;
+        
+        try
+        {
+            var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            using var client = new HttpClient(handler);
+            var response = await client.GetFromJsonAsync<int?>($"https://10.125.1.6:7087/api/My/getpayeeid/{userId}");
+
+            if (response == null)
+            {
+                errorMessage = "No Payee found for the given employee ID.";
+                return null; 
+            }
+
+
+            await sessionStorage.SetItemAsync("PayeeId", response);
             return response;
         }
         catch (Exception ex)

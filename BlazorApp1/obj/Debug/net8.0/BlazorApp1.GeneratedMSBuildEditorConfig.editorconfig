@@ -31,6 +31,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/BlazorApp1/BlazorApp1/Components/Layout/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9naW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/BlazorApp1/BlazorApp1/Components/Pages/AfterSignInWithGoogle.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZnRlclNpZ25JbldpdGhHb29nbGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -61,6 +65,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [F:/BlazorApp1/BlazorApp1/Components/Pages/SignInWithGoogle.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTaWduSW5XaXRoR29vZ2xlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/BlazorApp1/BlazorApp1/Components/Pages/Voucher.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xWb3VjaGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/BlazorApp1/BlazorApp1/Components/Pages/Weather.razor]

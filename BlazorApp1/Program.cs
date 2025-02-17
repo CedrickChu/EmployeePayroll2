@@ -34,8 +34,8 @@ builder.Services.AddRazorComponents()
 
 var app = builder.Build();
 
-app.Urls.Add("http://0.0.0.0:5000");
-app.Urls.Add("http://0.0.0.0:7215");
+// app.Urls.Add("http://0.0.0.0:5000");
+// app.Urls.Add("http://0.0.0.0:7215");
 
 
 if (app.Environment.IsDevelopment())
@@ -61,7 +61,7 @@ app.MapGet("/login", async (HttpContext context) =>
     await context.ChallengeAsync(GoogleDefaults.AuthenticationScheme, properties);
 });
 
-// Logout route
+
 app.MapGet("/logout", async (HttpContext context) =>
 {
     await context.SignOutAsync(Constants.Auth.AuthScheme);
