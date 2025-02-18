@@ -1,13 +1,32 @@
 window.showModal = (modalId) => {
-    var modal = new bootstrap.Modal(document.querySelector(modalId));
-    modal.show();
-}
+    const modalElement = document.querySelector(modalId);
+    if (modalElement) {
+        const modal = new bootstrap.Modal(modalElement);
+        modal.show();
+    }
+};
 
 function resetStudentIdInput(inputId) {
-    document.getElementById(inputId).value = '';
-};
+    const inputElement = document.getElementById(inputId);
+    if (inputElement) {
+        inputElement.value = '';
+    }
+}
 
 window.initSelectize = (id) => {
-    $('#' + id).selectize();
+    const selectElement = $('#' + id);
+    if (selectElement.length) {
+        selectElement.selectize();
+    }
 };
 
+function initializeDataTable() {
+    $('#example1').DataTable({
+        responsive: true,
+        lengthChange: false,
+        paging: true,
+        dom: 'Bfrtip',
+        buttons: ["copy", "csv", "excel"],
+        order: [[0, 'desc']]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+}

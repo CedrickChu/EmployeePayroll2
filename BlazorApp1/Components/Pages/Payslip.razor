@@ -9,10 +9,11 @@
 @using BlazorApp1.Models
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
+<button class="btn btn-primary" style="float: right;" @onclick="BackToEmployeePage">Log out</button>
 
 <div class="container-center" style="width:80%; margin:auto;">
 
-    <h1 class="mb-5">Employee Details</h1>
+    <h1 class="mb-5"><strong>Employee Details</strong></h1>
 
     @if (employee != null)
     {
@@ -45,14 +46,11 @@
                 <div class="p-2">@employee.middleName</div>
             </div>
         </div>
-
-
     }
     @if (!string.IsNullOrEmpty(errorMessage))
     {
         <p class="text-danger">@errorMessage</p>
     }
-
     @if (fiscalYearList != null)
     {
 
@@ -64,12 +62,10 @@
             }
         </select>
         <br>
-
-
     }
-    <div class="table-responsive">
-        <table class="table" id="dataTable">
-            <thead>
+    <div class="table-responsive " style="max-height: 400px; overflow-y: auto;">
+        <table class="table table-striped" id="dataTable">
+            <thead style="position: sticky; top: 0; z-index: 1;">
                 <tr>
                     <th class="text-center">TRANSACTION NO</th>
                     <th class="text-center">FISCAL YEAR</th>
@@ -86,7 +82,7 @@
                             <td class="text-center">@payroll.PayrollId</td>
                             <td class="text-center">@payroll.FiscalYear</td>
 
-                            <td>
+                            <td style="width: 300px; overflow: hidden; text-overflow: ellipsis;">
                                 @payroll.PeriodDescription
 
                             </td>
@@ -98,8 +94,8 @@
                 }
             </tbody>
         </table>
-        </div>
-    <button class="btn btn-secondary" @onclick="BackToEmployeePage">Back</button>
+    </div>
+
 
     <div class="modal fade" id="payrollModal" tabindex="-1" aria-labelledby="payrollModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
@@ -109,31 +105,103 @@
                         @if (payrollModel != null && employeeInfo != null)
                         {
                             <div class="col">
-                                <h1 class="mb-3">Employee Details</h1>
+                                <h1 class="mb-3"><strong>Employee Details</strong></h1>
                                 <hr style="width:80%;">
                                 <br>
                                 @foreach (var info in employeeInfo)
                                 {
-                                    <p><strong>Full Name: </strong>@info.FullName</p>
-                                    <p><strong>Detail ID: </strong>@info.DetailId</p>
-                                    <p><strong>Salary: </strong>@info.Salary</p>
-                                    <p><strong>Day Absent: </strong>@info.DayAbsent</p>
-                                    <p><strong>Minute Absent: </strong>@info.MinuteAbsent</p>
-                                    <p><strong>Hour Absent: </strong> @info.HourAbsent</p>
-                                    <p><strong>Amount Earned: </strong>@info.AmountEarned</p>
-                                    <p><strong>Period Description: </strong>@info.PeriodDescription</p>
-                                    <p><strong>Employee Position: </strong> @info.EmployeePosition</p>
-                                    <p><strong>Employee Number: </strong>@info.EmployeeNumber</p>
+                                    <div class="row justify-content-center mb-3">
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Full Name</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.FullName</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Detail ID</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.DetailId</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Salary</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.Salary</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Day Absent</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.DayAbsent</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Minute Absent</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.MinuteAbsent</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Hour Absent</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.HourAbsent</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Amount Earned</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.AmountEarned</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Period Description</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.PeriodDescription</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Employee Position</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.EmployeePosition</div>
+                                        </div>
+
+                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
+                                            <div class="p-2"><strong>Employee Number</strong></div>
+                                        </div>
+                                        <div
+                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
+                                            <div class="p-2">@info.EmployeeNumber</div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         }
+
 
                         @if (payrollModel != null && payslipDetails != null)
 
                         {
 
                             <div class="col">
-                                <h1 class="mb-3">Payslip Details</h1>
+                                <h1 class="mb-3"><strong>Payslip Details</strong></h1>
                                 <hr style="width:80%;"><br>
                                 @foreach (var pay in payslipDetails)
                                 {

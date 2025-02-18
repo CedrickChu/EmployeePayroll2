@@ -22,7 +22,7 @@ builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
     
 
 builder.Services.AddSingleton<UserService>();
-
+builder.Services.AddSingleton<EncryptionHelper>();
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
 

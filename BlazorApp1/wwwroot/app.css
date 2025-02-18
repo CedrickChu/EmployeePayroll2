@@ -59,11 +59,12 @@ h1:focus {
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:18px;
 	font-weight:bold;
-	padding:13px 15px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #b23e35;
+    width: 150px; 
+    height: 50px;
+    line-height: 50px; 
 }
 .myButton:hover {
 	background-color:#eb675e;
@@ -73,3 +74,48 @@ h1:focus {
 	top:1px;
 }
 
+
+thead th {
+    background-color: rgba(243, 168, 128, 0.944)!important;
+    color: rgb(0, 0, 0);
+}
+.dt-search{
+    margin-bottom: 10px;
+}
+.dt-buttons{
+    margin-bottom: -40px;
+}
+
+.spinner {
+    width: 88px;
+    height: 88px;
+    display: grid;
+    animation: spinner-plncf9 3.2s infinite;
+ }
+ 
+ .spinner::before,
+ .spinner::after {
+    content: "";
+    grid-area: 1/1;
+    border: 14.1px solid;
+    border-radius: 50%;
+    border-color: #ff6e6e #ff6e6e #0000 #0000;
+    mix-blend-mode: darken;
+    animation: spinner-plncf9 0.8s infinite linear;
+ }
+ 
+ .spinner::after {
+    border-color: #0000 #0000 #dbdcef #dbdcef;
+    animation-direction: reverse;
+ }
+ 
+ @keyframes spinner-plncf9 {
+    100% {
+       transform: rotate(1turn);
+    }
+ }
+.dt-paging{
+    padding-bottom: 20px!important;
+    float: right;
+ }
+ 

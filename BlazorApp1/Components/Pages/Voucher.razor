@@ -9,10 +9,16 @@
 @using BlazorApp1.Models
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
-<div class="container-center" style="width:80%; margin:auto;">
+<div class="container" style="width:100%; margin:auto;">
+    <h1 class="mb-5"><strong>Employee Details</strong></h1>
+    @if (isLoading)
+    {
+        <div class="container">
 
-    <h1 class="mb-5">Employee Details</h1>
+        <div class="spinner" style="height:200px; width: 200px;"></div>
+        </div>
 
+    }
 
     @if (employee != null)
     {
@@ -45,58 +51,65 @@
                 <div class="p-2">@employee.middleName</div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Voucher ID: </th>
-                        <th>Payee Name: </th>
-                        <th>Voucher Type</th>
-                        <th>Voucher Number</th>
-                        <th>Voucher Date Description</th>
-                        <th>Voucher Location</th>
-                        <th>Obligation Number</th>
-                        <th>Obligation Date</th>
-                        <th>Check Number</th>
-                        <th>Check Date</th>
-                        <th>Gross Amount</th>
-                        <th>Net Amount</th>
-                        <th>Fund Description</th>
-                        <th>Particulars</th>
-                        <th>Remarks</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (vouchers != null && vouchers.Count > 0)
+            
+                <table id="example1" class="table table-striped">
+                    <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
+                        <tr style="vertical-align: middle;">
+                            <th style="width: 120px; text-align: left;">Transaction Number</th>
+                            <th style="width: 140px;">Voucher Type</th>
+                            <th style="width: 150px;">Voucher Number</th>
+                            <th style="width: 150px;">Voucher Date Description</th>
+                            <th style="width: 120px;">Voucher Location</th>
+                            <th style="width: 120px;">Obligation Number</th>
+                            <th style="width: 150px;">Obligation Date</th>
+                            <th style="width: 120px;">Check Number</th>
+                            <th style="width: 120px;">Check Date</th>
+                            <th style="width: 120px; text-align: left;">Gross Amount</th>
+                            <th style="width: 120px; text-align: left;">Net Amount</th>
+                            <th style="width: 120px;">Fund Description</th>
+                            <th style="width: 400px; text-align: center;">Particulars</th>
+                            <th style="width: 120px;">Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:12px;">
+                        @if (vouchers != null && vouchers.Count > 0)
 
-                    {
-                         @foreach (var voucher in vouchers)
                         {
-                            <tr>
-                                <td class="text-center">@voucher.VoucherId</td>
-                                <td class="text-center">@voucher.PayeeName</td>
-                                <td class="text-center">@voucher.VoucherType</td>
-                                <td class="text-center">@voucher.VoucherNumber</td>
-                                <td class="text-center">@voucher.VoucherDateDescription</td>
-                                <td class="text-center">@voucher.VoucherLocation</td>
-                                <td class="text-center">@voucher.ObligationNumber</td>
-                                <td class="text-center">@voucher.ObligationDate</td>
-                                <td class="text-center">@voucher.CheckNumber</td>
-                                <td class="text-center">@voucher.CheckDate</td>
-                                <td class="text-center">@voucher.GrossAmount</td>
-                                <td class="text-center">@voucher.NetAmount</td>
-                                <td class="text-center">@voucher.FundDescription</td>
-                                <td class="text-center">@voucher.Particulars</td>
-                                <td class="text-center">@voucher.Remarks</td>
-                            </tr>
+                            @foreach (var voucher in vouchers)
+                            {
+                                <tr>
+                                    <td class="text-center" style="vertical-align:middle;">@voucher.VoucherId</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherType) ? "N/A" : voucher.VoucherType)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherNumber) ? "N/A" : voucher.VoucherNumber)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherDateDescription) ? "N/A" : voucher.VoucherDateDescription)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherLocation) ? "N/A" : voucher.VoucherLocation)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationNumber) ? "N/A" : voucher.ObligationNumber)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationDate) ? "N/A" : voucher.ObligationDate)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckNumber) ? "N/A" : voucher.CheckNumber)</td>
+                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckDate) ? "N/A" : voucher.CheckDate)</td>
+                                    <td style="text-align: left; vertical-align:middle;">@voucher.GrossAmount.ToString("N2")</td>
+                                    <td style="text-align: left; vertical-align:middle;">@voucher.NetAmount.ToString("N2")</td>
+                                    <td  style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.FundDescription) ? "N/A" : voucher.FundDescription)</td>
+
+                                    <td style="vertical-align: middle;text-align: justify;">@(string.IsNullOrEmpty(voucher.Particulars) ? "N/A" : voucher.Particulars)</td>
+                                 
+
+                                    <td  class='text-center' style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.Remarks) ? "N/A" : voucher.Remarks)</td>
+                                </tr>
+                            }
                         }
-                    }
-                </tbody>
-            </table>
-        </div>
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <p class="text-danger">@errorMessage</p>
+                        }
+                    
+                    </tbody>
+                </table>
+               
+
+        
     }
 </div>
-
 @code {
     public class IdNumberConverter : JsonConverter<int?>
     {
@@ -124,6 +137,8 @@
     private string? errorMessage;
     private bool isLoading = true;
     private bool showModal = false;
+    private bool isExpanded = false;
+    private bool isDataTableInitialized = false;
 
     private async Task LoadUserIdFromSession()
     {
@@ -131,6 +146,7 @@
         {
             userId = await sessionStorage.GetItemAsync<int?>("UserId");
             payeeId = await sessionStorage.GetItemAsync<int?>("PayeeId");
+                
             if (userId == null || userId == 0)
             {
                 errorMessage = "User ID is not available or invalid in session storage.";
@@ -140,7 +156,8 @@
             {
                 errorMessage = null;
                 await FetchEmployeeByID();
-                await GetVoucher();               
+                await GetVoucher();
+                await JS.InvokeVoidAsync("initializeDataTable");          
             }
         }
         catch (Exception ex)
@@ -197,72 +214,72 @@
         }
     }
     private async Task GetVoucher()
-{
-    try
     {
-        var handler = new HttpClientHandler()
+        try
         {
-            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-        };
-
-        var client = new HttpClient(handler);
-        var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetVouchers/{payeeId}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            var json = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine($"Response JSON: {json}"); 
-
-            if (string.IsNullOrEmpty(json))
+            var handler = new HttpClientHandler()
             {
-                errorMessage = "No data returned from the API.";
-                return;
-            }
-
-           var options = new JsonSerializerOptions
-            {
-                Converters = { new IdNumberConverter() }
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
             };
 
+            var client = new HttpClient(handler);
+            var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetVouchers/{payeeId}");
 
-            vouchers = JsonSerializer.Deserialize<List<Vouchers>>(json, options);
-
-            if (vouchers == null || vouchers.Count == 0)
+            if (response.IsSuccessStatusCode)
             {
-                errorMessage = "Unable to parse or empty fiscal years data.";
+                var json = await response.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(json))
+                {
+                    errorMessage = "No data returned from the API.";
+                    return;
+                }
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+            vouchers = JsonSerializer.Deserialize<List<Vouchers>>(json, options);
+            
+                if (vouchers == null || vouchers.Count == 0)
+                {
+                    errorMessage = "Unable to parse or empty fiscal years data.";
+                }
+                else
+                {
+                    StateHasChanged(); 
+                }
             }
             else
             {
-                StateHasChanged(); // Trigger UI update
+                errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
             }
         }
-        else
+        catch (Exception ex)
         {
-            errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
+            errorMessage = $"An error occurred: {ex.Message}";
         }
     }
-    catch (Exception ex)
-    {
-        errorMessage = $"An error occurred: {ex.Message}";
-    }
-}
-    
+        
 
     protected override async Task OnInitializedAsync()
     {
         await LoadUserIdFromSession();
+        
     }
-
     
     protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender && isLoading)
     {
-        if (firstRender && isLoading)
-        {
-            await Task.Delay(500);
-            StateHasChanged();
-        }
+        StateHasChanged(); 
+
+        await Task.Delay(100);
+
+        isLoading = false;
+    
+        StateHasChanged();
     }
+}
     private async Task BackToEmployeePage()
     {
         await sessionStorage.RemoveItemAsync("UserId");
@@ -270,4 +287,6 @@
 
         Navigation.NavigateTo("/");
     }
+ 
 }
+<script src="site.js"></script>

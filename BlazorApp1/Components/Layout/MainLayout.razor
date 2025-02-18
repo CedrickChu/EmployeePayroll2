@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
-
+@inject NavigationManager Navigation
+@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
 
 <div class="page">
     <div class="sidebar">
@@ -17,7 +18,7 @@
                 </h1>
             </a>
 
-            <!-- Logout button aligned to the right -->
+
         </header>
 
         <article class="content px-4">
@@ -31,4 +32,3 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
-
