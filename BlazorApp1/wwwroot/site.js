@@ -26,7 +26,7 @@ function initializeDataTable() {
         lengthChange: false,
         paging: true,
         dom: 'Bfrtip',
-        buttons: ["copy", "csv", "excel"],
+        buttons: ["copy", "excel", "colVis"],
         order: [[0, 'desc']]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 }

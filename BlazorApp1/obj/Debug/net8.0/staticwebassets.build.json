@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OsTqnE2FuClCCOZbSVi4XjI6JHjydsOVTE1y0wpfMYM=",
+  "Hash": "pbjoxVxhqbSEn7WECH8YbXo44YBw5U7f88qOa0CGPPc=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -10,12 +10,54 @@
     {
       "Name": "BlazorApp1\\wwwroot",
       "Source": "BlazorApp1",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "Pattern": "**"
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\Blazored.Modal.bundle.scp.css",
+      "SourceId": "Blazored.Modal",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\",
+      "BasePath": "_content/Blazored.Modal",
+      "RelativePath": "Blazored.Modal.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "Fingerprint": "xineniuf5l",
+      "Integrity": "Z/I1339InDuOPqcxuznblrUyBaYIXu9HFBq2z/gXq8A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\Blazored.Modal.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\BlazoredModal.razor.js",
+      "SourceId": "Blazored.Modal",
+      "SourceType": "Package",
+      "ContentRoot": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\",
+      "BasePath": "_content/Blazored.Modal",
+      "RelativePath": "BlazoredModal.razor.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8qij0y2dsa",
+      "Integrity": "kA2z2nG9FrUdWS/uJrfB+pfqUujsR3MLSrJeQKsao/Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\BlazoredModal.razor.js"
+    },
     {
       "Identity": "C:\\Users\\iHub37\\.nuget\\packages\\mudblazor\\8.2.0\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
@@ -59,10 +101,10 @@
       "OriginalItemSpec": "C:\\Users\\iHub37\\.nuget\\packages\\mudblazor\\8.2.0\\staticwebassets\\MudBlazor.min.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -73,17 +115,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "5508cusxa3",
-      "Integrity": "uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA=",
+      "Fingerprint": "xog9zi6hs7",
+      "Integrity": "PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
+      "OriginalItemSpec": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -98,13 +140,13 @@
       "Integrity": "uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
+      "OriginalItemSpec": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\app.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -115,17 +157,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "yjpyjyb2pz",
-      "Integrity": "3qAgIL+1D9Z5dH6pnlTOxjEb5TMPYhQr0lCPuOlwCN4=",
+      "Fingerprint": "oqo1pe066o",
+      "Integrity": "gGTiBQd7pbBLxu3a2ZxolKBw/GsyK/7LK3s3J05mLPI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -143,10 +185,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -164,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/datatables#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -185,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\css\\datatables.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.min.css",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/datatables.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -206,10 +248,31 @@
       "OriginalItemSpec": "wwwroot\\css\\datatables.min.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "encryption#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "myh10lorm3",
+      "Integrity": "0jqj2E+uEgrvVaRWW9vXSMAUEuVy9xmD6wCtRp3GznQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\encryption.js"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -227,10 +290,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\cutie.png",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/cutie#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -248,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\images\\cutie.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/logo#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -269,10 +332,10 @@
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.js",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/datatables#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -290,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\js\\datatables.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.min.js",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/datatables.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -311,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\js\\datatables.min.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\selectize.js",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/selectize#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -332,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\js\\selectize.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\site.js",
+      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -346,14 +409,88 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "6s0er4adi9",
-      "Integrity": "ipmhL+D+ALrm4FlGKkoLq3xogzuTLfCT1d6dP3adcVA=",
+      "Fingerprint": "wesm1lclwd",
+      "Integrity": "qLEiMA/i3Qnx3oSBcd7/dqEu8RXawZmAOxqB0IQiaws=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\site.js"
     }
   ],
   "Endpoints": [
+    {
+      "Route": "_content/Blazored.Modal/Blazored.Modal.bundle.scp.css",
+      "AssetFile": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\Blazored.Modal.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3088"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z/I1339InDuOPqcxuznblrUyBaYIXu9HFBq2z/gXq8A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 Feb 2024 22:12:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z/I1339InDuOPqcxuznblrUyBaYIXu9HFBq2z/gXq8A="
+        }
+      ]
+    },
+    {
+      "Route": "_content/Blazored.Modal/BlazoredModal.razor.js",
+      "AssetFile": "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\staticwebassets\\BlazoredModal.razor.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1162"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kA2z2nG9FrUdWS/uJrfB+pfqUujsR3MLSrJeQKsao/Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 20 Feb 2024 22:12:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kA2z2nG9FrUdWS/uJrfB+pfqUujsR3MLSrJeQKsao/Q="
+        }
+      ]
+    },
     {
       "Route": "_content/MudBlazor/MudBlazor.min.32p77bvc6j.css",
       "AssetFile": "C:\\Users\\iHub37\\.nuget\\packages\\mudblazor\\8.2.0\\staticwebassets\\MudBlazor.min.css",
@@ -520,7 +657,7 @@
     },
     {
       "Route": "app.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\app.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -529,7 +666,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3917"
+          "Value": "4021"
         },
         {
           "Name": "Content-Type",
@@ -537,11 +674,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qAgIL+1D9Z5dH6pnlTOxjEb5TMPYhQr0lCPuOlwCN4=\""
+          "Value": "\"gGTiBQd7pbBLxu3a2ZxolKBw/GsyK/7LK3s3J05mLPI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 10:11:41 GMT"
+          "Value": "Wed, 19 Feb 2025 02:22:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -551,13 +688,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-3qAgIL+1D9Z5dH6pnlTOxjEb5TMPYhQr0lCPuOlwCN4="
+          "Value": "sha256-gGTiBQd7pbBLxu3a2ZxolKBw/GsyK/7LK3s3J05mLPI="
         }
       ]
     },
     {
-      "Route": "app.yjpyjyb2pz.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\app.css",
+      "Route": "app.oqo1pe066o.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -566,7 +703,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "3917"
+          "Value": "4021"
         },
         {
           "Name": "Content-Type",
@@ -574,11 +711,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"3qAgIL+1D9Z5dH6pnlTOxjEb5TMPYhQr0lCPuOlwCN4=\""
+          "Value": "\"gGTiBQd7pbBLxu3a2ZxolKBw/GsyK/7LK3s3J05mLPI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 10:11:41 GMT"
+          "Value": "Wed, 19 Feb 2025 02:22:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -588,7 +725,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "yjpyjyb2pz"
+          "Value": "oqo1pe066o"
         },
         {
           "Name": "label",
@@ -596,13 +733,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-3qAgIL+1D9Z5dH6pnlTOxjEb5TMPYhQr0lCPuOlwCN4="
+          "Value": "sha256-gGTiBQd7pbBLxu3a2ZxolKBw/GsyK/7LK3s3J05mLPI="
         }
       ]
     },
     {
       "Route": "BlazorApp1.5508cusxa3.bundle.scp.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -646,53 +783,8 @@
       ]
     },
     {
-      "Route": "BlazorApp1.5508cusxa3.styles.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "6131"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 06:18:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "5508cusxa3"
-        },
-        {
-          "Name": "label",
-          "Value": "BlazorApp1.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA="
-        }
-      ]
-    },
-    {
       "Route": "BlazorApp1.bundle.scp.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -729,7 +821,7 @@
     },
     {
       "Route": "BlazorApp1.styles.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -737,8 +829,12 @@
           "Value": "bytes"
         },
         {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
           "Name": "Content-Length",
-          "Value": "6131"
+          "Value": "6199"
         },
         {
           "Name": "Content-Type",
@@ -746,27 +842,76 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA=\""
+          "Value": "\"PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 06:18:54 GMT"
+          "Value": "Wed, 19 Feb 2025 07:34:01 GMT"
         },
         {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Name": "Link",
+          "Value": "<_content/Blazored.Modal/Blazored.Modal.bundle.scp.css>; rel=\"preload\"; as=\"style\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA="
+          "Value": "sha256-PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc="
+        }
+      ]
+    },
+    {
+      "Route": "BlazorApp1.xog9zi6hs7.styles.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6199"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Feb 2025 07:34:01 GMT"
+        },
+        {
+          "Name": "Link",
+          "Value": "<_content/Blazored.Modal/Blazored.Modal.bundle.scp.css>; rel=\"preload\"; as=\"style\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xog9zi6hs7"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc="
+        },
+        {
+          "Name": "label",
+          "Value": "BlazorApp1.styles.css"
         }
       ]
     },
     {
       "Route": "bootstrap/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -811,7 +956,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -848,7 +993,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -893,7 +1038,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -930,7 +1075,7 @@
     },
     {
       "Route": "css/datatables.cdjxpgo22y.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -975,7 +1120,7 @@
     },
     {
       "Route": "css/datatables.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1012,7 +1157,7 @@
     },
     {
       "Route": "css/datatables.min.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1049,7 +1194,7 @@
     },
     {
       "Route": "css/datatables.min.o12on7tvtw.css",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1093,8 +1238,90 @@
       ]
     },
     {
+      "Route": "encryption.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1127"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0jqj2E+uEgrvVaRWW9vXSMAUEuVy9xmD6wCtRp3GznQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Feb 2025 00:39:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-0jqj2E+uEgrvVaRWW9vXSMAUEuVy9xmD6wCtRp3GznQ="
+        }
+      ]
+    },
+    {
+      "Route": "encryption.myh10lorm3.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1127"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"0jqj2E+uEgrvVaRWW9vXSMAUEuVy9xmD6wCtRp3GznQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Feb 2025 00:39:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "myh10lorm3"
+        },
+        {
+          "Name": "label",
+          "Value": "encryption.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-0jqj2E+uEgrvVaRWW9vXSMAUEuVy9xmD6wCtRp3GznQ="
+        }
+      ]
+    },
+    {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1139,7 +1366,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1176,7 +1403,7 @@
     },
     {
       "Route": "images/cutie.j4pu8s7ezv.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\cutie.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1221,7 +1448,7 @@
     },
     {
       "Route": "images/cutie.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\cutie.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1258,7 +1485,7 @@
     },
     {
       "Route": "images/logo.8gosucnwnt.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1303,7 +1530,7 @@
     },
     {
       "Route": "images/logo.png",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1340,7 +1567,7 @@
     },
     {
       "Route": "js/datatables.377tinzkhw.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1385,7 +1612,7 @@
     },
     {
       "Route": "js/datatables.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1422,7 +1649,7 @@
     },
     {
       "Route": "js/datatables.min.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.min.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1459,7 +1686,7 @@
     },
     {
       "Route": "js/datatables.min.kw8rracep0.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.min.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1504,7 +1731,7 @@
     },
     {
       "Route": "js/selectize.776mlns86c.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\selectize.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1549,7 +1776,7 @@
     },
     {
       "Route": "js/selectize.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\selectize.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1585,53 +1812,8 @@
       ]
     },
     {
-      "Route": "site.6s0er4adi9.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "865"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"ipmhL+D+ALrm4FlGKkoLq3xogzuTLfCT1d6dP3adcVA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 10:13:18 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "6s0er4adi9"
-        },
-        {
-          "Name": "label",
-          "Value": "site.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-ipmhL+D+ALrm4FlGKkoLq3xogzuTLfCT1d6dP3adcVA="
-        }
-      ]
-    },
-    {
       "Route": "site.js",
-      "AssetFile": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\site.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1640,7 +1822,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "865"
+          "Value": "868"
         },
         {
           "Name": "Content-Type",
@@ -1648,11 +1830,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ipmhL+D+ALrm4FlGKkoLq3xogzuTLfCT1d6dP3adcVA=\""
+          "Value": "\"qLEiMA/i3Qnx3oSBcd7/dqEu8RXawZmAOxqB0IQiaws=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 18 Feb 2025 10:13:18 GMT"
+          "Value": "Wed, 19 Feb 2025 08:20:12 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1662,7 +1844,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ipmhL+D+ALrm4FlGKkoLq3xogzuTLfCT1d6dP3adcVA="
+          "Value": "sha256-qLEiMA/i3Qnx3oSBcd7/dqEu8RXawZmAOxqB0IQiaws="
+        }
+      ]
+    },
+    {
+      "Route": "site.wesm1lclwd.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "868"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qLEiMA/i3Qnx3oSBcd7/dqEu8RXawZmAOxqB0IQiaws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 19 Feb 2025 08:20:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wesm1lclwd"
+        },
+        {
+          "Name": "label",
+          "Value": "site.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qLEiMA/i3Qnx3oSBcd7/dqEu8RXawZmAOxqB0IQiaws="
         }
       ]
     }

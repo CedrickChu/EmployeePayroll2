@@ -85,12 +85,18 @@ thead th {
 .dt-buttons{
     margin-bottom: -40px;
 }
-
+.spinner-container{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
 .spinner {
     width: 88px;
     height: 88px;
     display: grid;
     animation: spinner-plncf9 3.2s infinite;
+
  }
  
  .spinner::before,
@@ -118,4 +124,3 @@ thead th {
     padding-bottom: 20px!important;
     float: right;
  }
- 

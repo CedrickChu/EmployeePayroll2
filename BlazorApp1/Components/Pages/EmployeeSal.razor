@@ -1,73 +1,68 @@
 @page "/"
-@using BlazorApp1.Components.Layout
 @layout LoginLayout
-
 @rendermode InteractiveServer
-@using System.Text.Json
 @inject IHttpClientFactory ClientFactory    
 @inject IJSRuntime JS
 @inject HttpClient Http
 @inject NavigationManager Navigation
-@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
 
 <PageTitle>Login Form</PageTitle>
 
 <!-- Section: Design Block -->
 <section class="login text-center">
-
-
     <!-- Jumbotron -->
     <div class="container py-4">
         <div class="row justify-content-center">
         <div class="col-12 col-md-6 col-lg-6">
         <div class="card cascading-right bg-body-tertiary"
                 <div class="card-body p-5 shadow-5 text-center">
-        
-                        <h2 class="fw-bold mb-5">Login Form</h2>
+
+                <h2 class="fw-bold mb-5">Login Form</h2>
+                    
+                    <!-- Email input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label text-start d-block" for="employeeIdInput">Email Address</label>
+                        <input type="email" id="employeeIdInput" class="form-control text-center mt-2" @bind="username" />
+                        
+                    </div>
+
+
+                    <!-- Password input -->
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label text-start d-block" for="employeePasswordInput">Password</label>
+                        <input type="password" id="employeePasswordInput" class="form-control text-center mt-2" @bind="password" />
+                        
+                    </div>
+
+
+
+
+                    <!-- Submit button -->
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                        class="btn btn-block mb-4" style="background-color: #ff8150;" @onclick="NavigateToEmployeeDetails">
+                        SUBMIT
+                    </button>
+                    <p>or</p>
+                    <!-- Register buttons -->
+                    <div class="text-center">
+
+
+
+
+                        
+                            <a href="/login-google" class="btn rounded-pill px-3 py-2" style="background-color: #eecbbdf3;">
+                                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"
+                                style="height: 24px; width: 24px;">
+                            <span class="ms-2">Continue with Google</span>
+                            </a>
                             
-                            <!-- Email input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <label class="form-label text-start d-block" for="employeeIdInput">Email Address</label>
-                                <input type="email" id="employeeIdInput" class="form-control text-center mt-2" @bind="username" />
-                                
-                            </div>
 
-
-                            <!-- Password input -->
-                            <div data-mdb-input-init class="form-outline mb-4">
-                                <label class="form-label text-start d-block" for="employeePasswordInput">Password</label>
-                                <input type="password" id="employeePasswordInput" class="form-control text-center mt-2" @bind="password" />
-                                
-                            </div>
-
-
-
-
-                            <!-- Submit button -->
-                            <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                class="btn btn-block mb-4" style="background-color: #ff8150;" @onclick="NavigateToEmployeeDetails">
-                                SUBMIT
-                            </button>
-                            <p>or</p>
-                            <!-- Register buttons -->
-                            <div class="text-center">
-
-
-
-
-                                
-                                    <a href="/login-google" class="btn rounded-pill px-3 py-2" style="background-color: #eecbbdf3;">
-                                        <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"
-                                        style="height: 24px; width: 24px;">
-                                    <span class="ms-2">Continue with Google</span>
-                                    </a>
-                                    
-
-                            </div>
                     </div>
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
+        </div>
     </div>
     <!-- Jumbotron -->
 </section>
@@ -118,7 +113,7 @@
                 return null; 
             }
 
-            await sessionStorage.SetItemAsync("UserId", response);
+            await ProtectedSessionStore.SetAsync("UserId", response);
             return response;
         }
         catch (Exception ex)
@@ -147,9 +142,8 @@
                 errorMessage = "No Payee found for the given employee ID.";
                 return null; 
             }
+            await ProtectedSessionStore.SetAsync("PayeeId", response);;
 
-
-            await sessionStorage.SetItemAsync("PayeeId", response);
             return response;
         }
         catch (Exception ex)

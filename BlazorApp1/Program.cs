@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using BlazorApp1.Components;
 using BlazorExternalAuthGoogle;
 using Blazored.SessionStorage;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddBlazoredSessionStorage();
@@ -19,10 +20,29 @@ builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
         googleOptions.SignInScheme = Constants.Auth.AuthScheme;
         googleOptions.AccessDeniedPath = "/external-login-denied";
     });
-    
+
+
+    // builder.Services.AddHttpClient("ApiClient", client =>
+    // {
+    //     client.BaseAddress = new Uri("https://10.125.1.6:7087/api/My/");
+    // })
+    // .ConfigurePrimaryHttpMessageHandler(() =>
+    // {
+    //     var handler = new HttpClientHandler();
+    //     handler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
+    //     {
+    //         if (sslPolicyErrors == System.Net.Security.SslPolicyErrors.None)
+    //             return true;
+    //         return cert != null && cert.Thumbprint == "CERTIFICATE_THUMBPRINT";
+    //     };
+
+    //     return handler;
+    // });
 
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<EncryptionHelper>();
+builder.Services.AddSingleton<ModalService>();
+
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
 

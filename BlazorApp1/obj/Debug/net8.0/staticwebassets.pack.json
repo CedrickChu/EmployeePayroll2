@@ -1,55 +1,59 @@
 {
   "Files": [
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "PackagePath": "staticwebassets\\BlazorApp1.5508cusxa3.bundle.scp.css"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\app.css",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.css",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
       "PackagePath": "staticwebassets\\css\\datatables.css"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\datatables.min.css",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
       "PackagePath": "staticwebassets\\css\\datatables.min.css"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.png",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "PackagePath": "staticwebassets\\encryption.js"
+    },
+    {
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\cutie.png",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
       "PackagePath": "staticwebassets\\images\\cutie.png"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\images\\logo.png",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.js",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
       "PackagePath": "staticwebassets\\js\\datatables.js"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\datatables.min.js",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
       "PackagePath": "staticwebassets\\js\\datatables.min.js"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\js\\selectize.js",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
       "PackagePath": "staticwebassets\\js\\selectize.js"
     },
     {
-      "Id": "F:\\BlazorApp1\\BlazorApp1\\wwwroot\\site.js",
+      "Id": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
       "PackagePath": "staticwebassets\\site.js"
     },
     {

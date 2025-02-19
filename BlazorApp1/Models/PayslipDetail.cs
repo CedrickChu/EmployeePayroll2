@@ -14,6 +14,9 @@ namespace BlazorApp1.Models
         public int? MinuteAbsent { get; set; }
         public decimal? AmountEarned { get; set; }
         public string? PeriodDescription { get; set; }
+        public int PayrollGroupId { get; set; }
+        public decimal? NetPay { get; set; }
+        public decimal? NetPay1 { get; set; }
     }
 
     public class PayslipDetails

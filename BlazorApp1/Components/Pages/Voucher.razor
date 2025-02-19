@@ -1,25 +1,23 @@
 @page "/voucher"
 @rendermode InteractiveServer
-@using System.Text.Json
 @inject IHttpClientFactory ClientFactory
-@using System.Text.Json.Serialization;
 @inject IJSRuntime JS
+@inject IJSRuntime JSRuntime
 @inject HttpClient Http
 @inject NavigationManager Navigation
-@using BlazorApp1.Models
-@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
 
-<div class="container" style="width:100%; margin:auto;">
+<PageTitle>Voucher</PageTitle>
+<div class="container-center" style="width:80%; margin:auto;">
     <h1 class="mb-5"><strong>Employee Details</strong></h1>
     @if (isLoading)
     {
-        <div class="container">
+        <div class="spinner-container">
 
-        <div class="spinner" style="height:200px; width: 200px;"></div>
+            <div class="spinner" style="height:200px; width: 200px;"></div>
         </div>
 
     }
-
     @if (employee != null)
     {
         <div class="row justify-content-center">
@@ -52,59 +50,59 @@
             </div>
         </div>
             
-                <table id="example1" class="table table-striped">
-                    <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
-                        <tr style="vertical-align: middle;">
-                            <th style="width: 120px; text-align: left;">Transaction Number</th>
-                            <th style="width: 140px;">Voucher Type</th>
-                            <th style="width: 150px;">Voucher Number</th>
-                            <th style="width: 150px;">Voucher Date Description</th>
-                            <th style="width: 120px;">Voucher Location</th>
-                            <th style="width: 120px;">Obligation Number</th>
-                            <th style="width: 150px;">Obligation Date</th>
-                            <th style="width: 120px;">Check Number</th>
-                            <th style="width: 120px;">Check Date</th>
-                            <th style="width: 120px; text-align: left;">Gross Amount</th>
-                            <th style="width: 120px; text-align: left;">Net Amount</th>
-                            <th style="width: 120px;">Fund Description</th>
-                            <th style="width: 400px; text-align: center;">Particulars</th>
-                            <th style="width: 120px;">Remarks</th>
+        <table id="example1" class="table table-striped">
+            <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
+                <tr style="vertical-align: middle;">
+                    <th style="width: 120px; text-align: left;">Transaction Number</th>
+                    <th style="width: 140px;">Voucher Type</th>
+                    <th style="width: 150px;">Voucher Number</th>
+                    <th style="width: 150px;">Voucher Date Description</th>
+                    <th style="width: 120px;">Voucher Location</th>
+                    <th style="width: 120px;">Obligation Number</th>
+                    <th style="width: 150px;">Obligation Date</th>
+                    <th style="width: 120px;">Check Number</th>
+                    <th style="width: 120px;">Check Date</th>
+                    <th style="width: 120px; text-align: left;">Gross Amount</th>
+                    <th style="width: 120px; text-align: left;">Net Amount</th>
+                    <th style="width: 120px;">Fund Description</th>
+                    <th style="width: 400px; text-align: center;">Particulars</th>
+                    <th style="width: 120px;">Remarks</th>
+                </tr>
+            </thead>
+            <tbody style="font-size:12px;">
+                @if (vouchers != null && vouchers.Count > 0)
+
+                {
+                    @foreach (var voucher in vouchers)
+                    {
+                        <tr>
+                            <td class="text-center" style="vertical-align:middle;">@voucher.VoucherId</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherType) ? "N/A" : voucher.VoucherType)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherNumber) ? "N/A" : voucher.VoucherNumber)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherDateDescription) ? "N/A" : voucher.VoucherDateDescription)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherLocation) ? "N/A" : voucher.VoucherLocation)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationNumber) ? "N/A" : voucher.ObligationNumber)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationDate) ? "N/A" : voucher.ObligationDate)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckNumber) ? "N/A" : voucher.CheckNumber)</td>
+                            <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckDate) ? "N/A" : voucher.CheckDate)</td>
+                            <td style="text-align: left; vertical-align:middle;">@voucher.GrossAmount.ToString("N2")</td>
+                            <td style="text-align: left; vertical-align:middle;">@voucher.NetAmount.ToString("N2")</td>
+                            <td  style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.FundDescription) ? "N/A" : voucher.FundDescription)</td>
+
+                            <td style="vertical-align: middle;text-align: justify;">@(string.IsNullOrEmpty(voucher.Particulars) ? "N/A" : voucher.Particulars)</td>
+                            
+
+                            <td  class='text-center' style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.Remarks) ? "N/A" : voucher.Remarks)</td>
                         </tr>
-                    </thead>
-                    <tbody style="font-size:12px;">
-                        @if (vouchers != null && vouchers.Count > 0)
-
-                        {
-                            @foreach (var voucher in vouchers)
-                            {
-                                <tr>
-                                    <td class="text-center" style="vertical-align:middle;">@voucher.VoucherId</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherType) ? "N/A" : voucher.VoucherType)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherNumber) ? "N/A" : voucher.VoucherNumber)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherDateDescription) ? "N/A" : voucher.VoucherDateDescription)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.VoucherLocation) ? "N/A" : voucher.VoucherLocation)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationNumber) ? "N/A" : voucher.ObligationNumber)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.ObligationDate) ? "N/A" : voucher.ObligationDate)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckNumber) ? "N/A" : voucher.CheckNumber)</td>
-                                    <td style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.CheckDate) ? "N/A" : voucher.CheckDate)</td>
-                                    <td style="text-align: left; vertical-align:middle;">@voucher.GrossAmount.ToString("N2")</td>
-                                    <td style="text-align: left; vertical-align:middle;">@voucher.NetAmount.ToString("N2")</td>
-                                    <td  style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.FundDescription) ? "N/A" : voucher.FundDescription)</td>
-
-                                    <td style="vertical-align: middle;text-align: justify;">@(string.IsNullOrEmpty(voucher.Particulars) ? "N/A" : voucher.Particulars)</td>
-                                 
-
-                                    <td  class='text-center' style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.Remarks) ? "N/A" : voucher.Remarks)</td>
-                                </tr>
-                            }
-                        }
-                        @if (!string.IsNullOrEmpty(errorMessage))
-                        {
-                            <p class="text-danger">@errorMessage</p>
-                        }
-                    
-                    </tbody>
-                </table>
+                    }
+                }
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <p class="text-danger">@errorMessage</p>
+                }
+            
+            </tbody>
+        </table>
                
 
         
@@ -144,8 +142,10 @@
     {
         try
         {
-            userId = await sessionStorage.GetItemAsync<int?>("UserId");
-            payeeId = await sessionStorage.GetItemAsync<int?>("PayeeId");
+            var tempUserId = await ProtectedSessionStore.GetAsync<int?>("UserId");
+            userId = tempUserId.Success ? tempUserId.Value : null;
+            var tempPayeeId = await ProtectedSessionStore.GetAsync<int?>("PayeeId");
+            payeeId = tempPayeeId.Success ? tempPayeeId.Value : null;
                 
             if (userId == null || userId == 0)
             {
@@ -259,34 +259,29 @@
             errorMessage = $"An error occurred: {ex.Message}";
         }
     }
-        
-
     protected override async Task OnInitializedAsync()
     {
         await LoadUserIdFromSession();
         
     }
-    
     protected override async Task OnAfterRenderAsync(bool firstRender)
-{
-    if (firstRender && isLoading)
     {
-        StateHasChanged(); 
+        if (firstRender && isLoading)
+        {
+            StateHasChanged(); 
 
-        await Task.Delay(100);
+            await Task.Delay(100);
 
-        isLoading = false;
-    
-        StateHasChanged();
+            isLoading = false;
+        
+            StateHasChanged();
+        }
     }
-}
     private async Task BackToEmployeePage()
     {
-        await sessionStorage.RemoveItemAsync("UserId");
-
-
+        await ProtectedSessionStore.DeleteAsync("UserId");
+        await ProtectedSessionStore.DeleteAsync("PayeeId");
         Navigation.NavigateTo("/");
     }
- 
 }
 <script src="site.js"></script>

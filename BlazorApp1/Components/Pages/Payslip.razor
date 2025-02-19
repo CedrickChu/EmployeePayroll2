@@ -1,20 +1,16 @@
 @page "/payroll"
 @rendermode InteractiveServer
-@using System.Text.Json
 @inject IHttpClientFactory ClientFactory
-@using System.Text.Json.Serialization;
 @inject IJSRuntime JS
 @inject HttpClient Http
 @inject NavigationManager Navigation
-@using BlazorApp1.Models
-@inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject ProtectedSessionStorage ProtectedSessionStore
+@layout MainLayout
+@inject ModalService ModalService
 
-<button class="btn btn-primary" style="float: right;" @onclick="BackToEmployeePage">Log out</button>
-
+<PageTitle>Payslip</PageTitle>
 <div class="container-center" style="width:80%; margin:auto;">
-
     <h1 class="mb-5"><strong>Employee Details</strong></h1>
-
     @if (employee != null)
     {
         <div class="row justify-content-center">
@@ -53,7 +49,6 @@
     }
     @if (fiscalYearList != null)
     {
-
         <select class="form-select float-right" style="width:150px;" @onchange="OnFiscalYearChanged">
             <option value="" disabled selected>Select Year</option>
             @foreach (var year in fiscalYearList)
@@ -63,17 +58,16 @@
         </select>
         <br>
     }
-    <div class="table-responsive " style="max-height: 400px; overflow-y: auto;">
-        <table class="table table-striped" id="dataTable">
-            <thead style="position: sticky; top: 0; z-index: 1;">
+        <table class="table table-striped" id='example1'>
+            <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
                 <tr>
-                    <th class="text-center">TRANSACTION NO</th>
+                    <th class="text-center" style="width:200px;">TRANSACTION NO</th>
                     <th class="text-center">FISCAL YEAR</th>
-                    <th>DESCRIPTION</th>
+                    <th class='text-center' style="width:300px;">DESCRIPTION</th>
                     <th class="text-center">PAYSLIP</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="font-size:12px; vertical-align: middle;" >
                 @if (payrollData != null)
                 {
                     @foreach (var payroll in payrollData)
@@ -82,7 +76,7 @@
                             <td class="text-center">@payroll.PayrollId</td>
                             <td class="text-center">@payroll.FiscalYear</td>
 
-                            <td style="width: 300px; overflow: hidden; text-overflow: ellipsis;">
+                            <td style="width: 300px; text-align: justify;">
                                 @payroll.PeriodDescription
 
                             </td>
@@ -94,120 +88,124 @@
                 }
             </tbody>
         </table>
-    </div>
-
-
     <div class="modal fade" id="payrollModal" tabindex="-1" aria-labelledby="payrollModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-body">
                     <div class="row">
                         @if (payrollModel != null && employeeInfo != null)
                         {
                             <div class="col">
-                                <h1 class="mb-3"><strong>Employee Details</strong></h1>
-                                <hr style="width:80%;">
+                                <h1 class="text-center" style="font-size: 30px;"><strong>Employee Details</strong></h1>
+                                <hr style="width:80%; margin:auto;">
                                 <br>
-                                @foreach (var info in employeeInfo)
+                                @if (employeeInfo != null)
                                 {
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Full Name</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.FullName</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Detail ID</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.DetailId</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Salary</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.Salary</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Day Absent</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.DayAbsent</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Minute Absent</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.MinuteAbsent</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Hour Absent</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.HourAbsent</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Amount Earned</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.AmountEarned</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Period Description</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.PeriodDescription</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Employee Position</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.EmployeePosition</div>
-                                        </div>
-
-                                        <div class="col-5 col-md-3 bg-light border-bottom border-white border-3 mb-3">
-                                            <div class="p-2"><strong>Employee Number</strong></div>
-                                        </div>
-                                        <div
-                                            class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3 mb-3">
-                                            <div class="p-2">@info.EmployeeNumber</div>
-                                        </div>
+                                <div class="col">
+                                    <div class="row justify-content-center" style="width:90%; margin:auto;">
+                                        <table class="table table-bordered bg-light">
+                                            <tbody>
+                                                @foreach (var info in employeeInfo)
+                                                {
+                                                    <tr>
+                                                        <td><strong>Full Name</strong></td>
+                                                        <td>@info.FullName</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Employee Number</strong></td>
+                                                        <td>@info.EmployeeNumber</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Employee Position</strong></td>
+                                                        <td>@info.EmployeePosition</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Salary</strong></td>
+                                                        <td>@info.Salary?.ToString("N2")</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Day Absent</strong></td>
+                                                        @if(@info.DayAbsent == 0) {
+                                                            <td></td>
+                                                        } else {
+                                                            <td>@info.DayAbsent</td>
+                                                        }
+                                                        
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Minute Absent</strong></td>
+                                                        @if(@info.MinuteAbsent == 0) {
+                                                            <td></td>
+                                                        } else {
+                                                            <td>@info.MinuteAbsent</td>
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Hour Absent</strong></td>
+                                                        @if(@info.HourAbsent == 0) {
+                                                            <td></td>
+                                                        } else {
+                                                            <td>@info.HourAbsent</td>
+                                                        }
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Amount Earned</strong></td>
+                                                        <td>@info.AmountEarned?.ToString("N2")</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>Period Description</strong></td>
+                                                        <td>@info.PeriodDescription</td>
+                                                    </tr>
+                                                     
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
                                     </div>
                                 }
+
                             </div>
                         }
-
-
                         @if (payrollModel != null && payslipDetails != null)
-
                         {
-
                             <div class="col">
-                                <h1 class="mb-3"><strong>Payslip Details</strong></h1>
-                                <hr style="width:80%;"><br>
-                                @foreach (var pay in payslipDetails)
-                                {
-                                    <p><strong>Deduction Description: </strong>@pay.DeductionDescription</p>
-                                    <p><strong>Amount: </strong>@pay.Amount</p>
-                                }
+                                <h1 class="text-center" style="font-size: 30px;"><strong>Payslip Details</strong></h1>
+                                <hr style="width:80%; margin:auto;"><br>
+                                <div class="row justify-content-center" style="width:90%; margin:auto;">
+                                    <table class="table table-bordered bg-light">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Deductions</th>
+                                                <th class="text-center">Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var pay in payslipDetails)
+                                            {
+                                                <tr>
+                                                    <td><strong>@pay.DeductionDescription</strong></td>
+                                                    <td class="text-end">@pay.Amount?.ToString("N2")</td>
+                                                </tr>
+                                            }
+                                           <tr>
+                                                <td><strong>Total Deduction</strong></td>
+                                                <td class="text-end text-danger">
+                                                    @{ var totalDeductions = payslipDetails.Sum(pay => pay.Amount ?? 0); }
+                                                    @totalDeductions.ToString("N2")
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Net Payslip</strong></td>
+                                                <td class="text-end text-danger"><strong>
+                                                    @{
+                                                        var netPay = employeeInfo.FirstOrDefault()?.NetPay ?? 0;
+                                                    }
+                                                    @netPay.ToString("N2")</strong>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         }
                     </div>
@@ -221,7 +219,11 @@
 </div>
 
 
+
+
 @code {
+    [CascadingParameter] public NavMenu? Layout { get; set; }
+
     public class IdNumberConverter : JsonConverter<int?>
     {
         public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -256,11 +258,15 @@
     private bool isLoading = true;
     private bool showModal = false;
 
+    public bool isLogout {get; set;}
+
+    
     private async Task LoadUserIdFromSession()
     {
         try
         {
-            userId = await sessionStorage.GetItemAsync<int?>("UserId");
+            var result = await ProtectedSessionStore.GetAsync<int?>("UserId");
+            userId = result.Success ? result.Value : null;
 
             if (userId == null || userId == 0)
             {
@@ -270,8 +276,11 @@
             else
             {
                 errorMessage = null;
+                
                 await FetchEmployeeByID();
                 await InitializeData();
+                await JS.InvokeVoidAsync("initializeDataTable"); 
+                 
             }
         }
         catch (Exception ex)
@@ -338,6 +347,7 @@
             {
                 Console.WriteLine($"Selected Fiscal Year: {selectedFiscalYear}");
                 await FetchPayrollByID(userId, selectedFiscalYear);
+                
             }
             else
             {
@@ -357,7 +367,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadUserIdFromSession();
+        await LoadUserIdFromSession(); 
+ 
     }
 
     private async Task GetFiscalYear()
@@ -478,7 +489,7 @@
                 payrollModel = JsonSerializer.Deserialize<PayrollModel>(json);
                 employeeInfo = payrollModel.EmployeeInfo;
                 payslipDetails = payrollModel.PayslipDetails;
-
+                
 
             }
             else
@@ -491,6 +502,7 @@
             errorMessage = $"An error occurred: {ex.Message}";
         }
     }
+
     private async Task OpenModal(int? payslipId)
     {
         await FetchPayrollDetail(payslipId, userId);
@@ -498,22 +510,11 @@
         await JS.InvokeVoidAsync("showModal", "#payrollModal");
     }
 
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && isLoading)
-        {
-            await Task.Delay(500);
-            StateHasChanged();
-        }
-    }
     private async Task BackToEmployeePage()
     {
-        await sessionStorage.RemoveItemAsync("UserId");
-
+        await ProtectedSessionStore.DeleteAsync("UserId");
 
         Navigation.NavigateTo("/");
     }
-
 }
 <script src="site.js"></script>
