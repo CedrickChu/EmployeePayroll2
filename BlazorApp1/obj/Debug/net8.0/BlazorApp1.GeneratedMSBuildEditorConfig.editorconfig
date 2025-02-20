@@ -35,6 +35,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9naW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/BlazorApp1/blazorapp1/Components/Layout/Logout.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9nb3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/BlazorApp1/blazorapp1/Components/Layout/LogoutButton.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTG9nb3V0QnV0dG9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

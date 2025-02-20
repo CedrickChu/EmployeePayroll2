@@ -1,9 +1,15 @@
+using System.Threading.Tasks;
+
 public class AppState
 {
-    public event Action? OnEventTriggered;
+    public event Func<Task>? OnEventTriggered;
 
-    public void TriggerEvent()
+    public async Task TriggerEvent()
     {
-        OnEventTriggered?.Invoke();
+        if (OnEventTriggered is not null)
+        {
+            await OnEventTriggered.Invoke();
+        }
+        
     }
 }

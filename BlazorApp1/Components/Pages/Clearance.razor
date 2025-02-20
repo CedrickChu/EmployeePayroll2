@@ -4,7 +4,15 @@
 @using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
 @inject IJSRuntime JS
-
+<style>
+    .row:hover {
+    background-color: #e6e6e6; 
+    transition: background-color 0.3s ease-in-out;
+}
+    #basic-addon2{
+        height: 50px;
+    }
+</style>
 <PageTitle>Clearance</PageTitle>
 
 <section class="clearance-page">
@@ -55,10 +63,165 @@
     </div>
 </section>
 
+<!-- Accountability Modal -->
+<div class="modal fade" id="accountabilityModal" tabindex="-1" aria-labelledby="accountabilityModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Clearance Accountability Template</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-left" style="width: 250px;">
+            <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="@selectedPeriod" readonly>
+            <div class="input-group-append" @onclick='() => ShowPeriodModal()'>
+                <span class="input-group-text" id="basic-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-card-list" viewBox="0 0 16 16">
+                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
+                    </svg> 
+                </span>
+            </div>
+        </div>
+        </div>
+        
+        <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Accountability</th>
+            <th>Employee</th>
+            <th>Position</th>
+            <th>Office/Department</th>
+            <th>Insert Sub-Signatory</th>
+            <th>Remarks</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Office Equipment</td>
+            <td>John Doe</td>
+            <td>Manager</td>
+            <td>Finance</td>
+            <td>
+                <button class="btn btn-sm btn-primary">Add Signatory</button>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>Company Vehicle</td>
+            <td>Jane Smith</td>
+            <td>Supervisor</td>
+            <td>Operations</td>
+            <td>
+                <button class="btn btn-sm btn-primary">Add Signatory</button>
+            </td>
+            <td>
+                <select class="form-select">
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Period Modal -->
+<div class="modal fade" id="periodModal" tabindex="-1" aria-labelledby="periodModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Period</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    @if (period != null)
+                    {
+                        @foreach (var data in period)
+                        {
+                            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick="() => selectPeriod(data.Description)">
+                                <p class="mb-0">@data.Description</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @code {
-    private void HandleClick(string name)
+    private string? selectedPeriod;
+    private string? errorMessage;
+    private List<Period>? period = new List<Period>();
+
+    private async Task HandleClick(string name)
     {
-        Console.WriteLine($"Clicked: {name}");
-        // Implement navigation or other logic based on the clicked item
+        await JS.InvokeVoidAsync("showModal", "#accountabilityModal");
+    }
+
+    private async Task ShowPeriodModal()
+    {
+        await JS.InvokeVoidAsync("showModal", "#periodModal");
+        await GetAllPeriod();
+    }
+
+    private async Task selectPeriod(string? description)
+    {
+        if (!string.IsNullOrEmpty(description))
+        {
+            selectedPeriod = description;
+            await JS.InvokeVoidAsync("closeModal", "#periodModal");
+            StateHasChanged();
+        }
+    }
+
+    private async Task GetAllPeriod()
+    {
+        try
+        {
+            using var handler = new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+            };
+
+            using var client = new HttpClient(handler);
+            var response = await client.GetAsync("https://10.125.1.6:7087/api/my/GetAllPeriods");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                period = JsonSerializer.Deserialize<List<Period>>(json);
+
+                if (period == null || period.Count == 0)
+                {
+                    errorMessage = "Unable to parse or empty fiscal years data.";
+                }
+            }
+            else
+            {
+                errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
     }
 }
+
+
+<script src="site.js"></script>

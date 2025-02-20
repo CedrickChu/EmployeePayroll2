@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @inject NavigationManager Navigation
 @inject Blazored.SessionStorage.ISessionStorageService sessionStorage
+@inject AppState AppState
 
 <div class="page">
     <div class="sidebar">
@@ -24,6 +25,7 @@
             @Body
         </article>
     </main>
+    
 </div>
 
 <div id="blazor-error-ui">

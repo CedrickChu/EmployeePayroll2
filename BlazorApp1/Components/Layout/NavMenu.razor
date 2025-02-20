@@ -5,6 +5,7 @@
 @inherits LayoutComponentBase
 @inject IJSRuntime JS
 @inject ModalService ModalService
+@inject AppState AppState
 
 <div class="top-row ps-3 navbar navbar-dark" style="height:100px;">
     <div class="container d-md-none d-lg-none">
@@ -18,7 +19,6 @@
     </div>
 </div>
 <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-<CascadingValue Value="this">
     <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
         <nav class="flex-column">
             <div class="nav-item px-3">
@@ -54,10 +54,10 @@
                     </svg>Clearance
                 </NavLink>
             </div>
+
        
            
         </nav>
     </div>
-</CascadingValue>
 
 <script src="js/site.js"></script>

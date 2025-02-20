@@ -7,7 +7,7 @@
 @inject ProtectedSessionStorage ProtectedSessionStore
 @layout MainLayout
 @inject ModalService ModalService
-
+@inject AppState AppState
 <PageTitle>Payslip</PageTitle>
 <div class="container-center" style="width:80%; margin:auto;">
     <h1 class="mb-5"><strong>Employee Details</strong></h1>
@@ -373,7 +373,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadUserIdFromSession(); 
+        await LoadUserIdFromSession();
+        AppState.OnEventTriggered += ExecuteFunction;
  
     }
 
@@ -521,6 +522,17 @@
         await ProtectedSessionStore.DeleteAsync("UserId");
 
         Navigation.NavigateTo("/");
+    }
+    private string message = "Waiting for event...";
+    private async Task ExecuteFunction()
+    {
+        Console.WriteLine("Change State");
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        AppState.OnEventTriggered -= ExecuteFunction;
     }
 }
 <script src="site.js"></script>
