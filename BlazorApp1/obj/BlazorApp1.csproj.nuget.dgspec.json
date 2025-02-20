@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\BlazorApp1\\blazorApp1\\BlazorApp1.csproj": {}
+    "F:\\BlazorApp1\\blazorapp1\\BlazorApp1.csproj": {}
   },
   "projects": {
-    "F:\\BlazorApp1\\blazorApp1\\BlazorApp1.csproj": {
+    "F:\\BlazorApp1\\blazorapp1\\BlazorApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\BlazorApp1\\blazorApp1\\BlazorApp1.csproj",
+        "projectUniqueName": "F:\\BlazorApp1\\blazorapp1\\BlazorApp1.csproj",
         "projectName": "BlazorApp1",
-        "projectPath": "F:\\BlazorApp1\\blazorApp1\\BlazorApp1.csproj",
+        "projectPath": "F:\\BlazorApp1\\blazorapp1\\BlazorApp1.csproj",
         "packagesPath": "C:\\Users\\iHub37\\.nuget\\packages\\",
-        "outputPath": "F:\\BlazorApp1\\blazorApp1\\obj\\",
+        "outputPath": "F:\\BlazorApp1\\blazorapp1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

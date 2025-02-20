@@ -1,13 +1,64 @@
 @page "/clearance"
 @rendermode InteractiveServer
 @using System.Text.Json
+@using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
-@using System.Text.Json.Serialization;
+@inject IJSRuntime JS
+
 <PageTitle>Clearance</PageTitle>
 
-<!-- Section: Design Block -->
-<section class="login text-center">
-    <div class="container py-4">
-        <h1>Hello</h1>
+<section class="clearance-page">
+    <div class="container" style="width:50%; margin:auto;">
+        <h1 class="mb-3"><strong>Select Clearance</strong></h1>
+        <p style="margin-top: -10px;">Please choose the type of clearance you wish to process.</p>
+        <div class="container" style="padding-left: 0; margin-left: 0;">
+            <h5>Clearance Type</h5>
+            <hr class='text-primary' style="width: 140px; height:3px; margin-top: -5px; opacity: 100%;">
+        </div>
+        <div class="container border border-2">
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("General")'>
+                <p class="mb-0">General</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Regular Faculty")'>
+                <p class="mb-0">Regular Faculty</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Non-Regular Faculty")'>
+                <p class="mb-0">Non-Regular Faculty</p>
+            </div>
+            <div class="row align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Non-Regular Admin Staff")'>
+                <p class="mb-0">Non-Regular Admin Staff</p>
+            </div>
+        </div>
+        <br><br>
+        <h5 class="text-primary">Other Options</h5>
+        <p style="margin-top: -10px;">Please choose the type of clearance you wish to process.</p>
+        <div class="container border border-2">
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Review Clearance Request")'>
+                <p class="mb-0">Review Clearance Request</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("View My Clearances")'>
+                <p class="mb-0">View My Clearances</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Prepare Accountabilities")'>
+                <p class="mb-0">Prepare Accountabilities</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Create/View Clearance Template")'>
+                <p class="mb-0">Create/View Clearance Template</p>
+            </div>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Clearance Purpose List")'>
+                <p class="mb-0">Clearance Purpose List</p>
+            </div>
+            <div class="row align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Clearance Office List")'>
+                <p class="mb-0">Clearance Office List</p>
+            </div>
+        </div>
     </div>
 </section>
+
+@code {
+    private void HandleClick(string name)
+    {
+        Console.WriteLine($"Clicked: {name}");
+        // Implement navigation or other logic based on the clicked item
+    }
+}

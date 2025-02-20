@@ -190,19 +190,25 @@
                                            <tr>
                                                 <td><strong>Total Deduction</strong></td>
                                                 <td class="text-end text-danger">
+                                                    <strong>
                                                     @{ var totalDeductions = payslipDetails.Sum(pay => pay.Amount ?? 0); }
-                                                    @totalDeductions.ToString("N2")
+                                                    ₱@totalDeductions.ToString("N2")
+                                                    </strong>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Net Payslip</strong></td>
-                                                <td class="text-end text-danger"><strong>
-                                                    @{
-                                                        var netPay = employeeInfo.FirstOrDefault()?.NetPay ?? 0;
-                                                    }
-                                                    @netPay.ToString("N2")</strong>
+                                                @{
+                                                    var employee = employeeInfo?.FirstOrDefault();
+                                                    var payrollGroupId = employee?.PayrollGroupId;
+                                                    var netPay = payrollGroupId != 0 ? employee?.NetPay : employee?.NetPay1;
+                                                }
+                                                <td class="text-end text-primary">
+                                                <strong>₱@(netPay.HasValue ? netPay.Value.ToString("N2") : "0.00")</strong>
+                                                
                                                 </td>
                                             </tr>
+                                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -487,8 +493,8 @@
             {
                 var json = await response.Content.ReadAsStringAsync();
                 payrollModel = JsonSerializer.Deserialize<PayrollModel>(json);
-                employeeInfo = payrollModel.EmployeeInfo;
-                payslipDetails = payrollModel.PayslipDetails;
+                employeeInfo = payrollModel?.EmployeeInfo;
+                payslipDetails = payrollModel?.PayslipDetails;
                 
 
             }

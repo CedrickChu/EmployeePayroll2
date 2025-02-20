@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mNfMKsURq6w=",
+  "dgSpecHash": "OBgkXdgTABg=",
   "success": true,
-  "projectFilePath": "F:\\BlazorApp1\\blazorApp1\\BlazorApp1.csproj",
+  "projectFilePath": "F:\\BlazorApp1\\blazorapp1\\BlazorApp1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\iHub37\\.nuget\\packages\\blazored.modal\\7.3.1\\blazored.modal.7.3.1.nupkg.sha512",
     "C:\\Users\\iHub37\\.nuget\\packages\\blazored.sessionstorage\\2.4.0\\blazored.sessionstorage.2.4.0.nupkg.sha512",

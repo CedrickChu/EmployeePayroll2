@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pbjoxVxhqbSEn7WECH8YbXo44YBw5U7f88qOa0CGPPc=",
+  "Hash": "5j6EADekMxWQB1wfd8wbZonWJyQN61T3R5YDgnGprGI=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -10,7 +10,7 @@
     {
       "Name": "BlazorApp1\\wwwroot",
       "Source": "BlazorApp1",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "Pattern": "**"
     }
@@ -101,10 +101,10 @@
       "OriginalItemSpec": "C:\\Users\\iHub37\\.nuget\\packages\\mudblazor\\8.2.0\\staticwebassets\\MudBlazor.min.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -119,13 +119,13 @@
       "Integrity": "PxgU/FCTuofw90JbibqloNZNurS6obxzGMvKz9k7GNc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
+      "OriginalItemSpec": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Computed",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "BlazorApp1#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -140,13 +140,13 @@
       "Integrity": "uXb6lkFpMG5y+MplOxPqX2+0qj7aLiAR1cwzh4xUrpA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
+      "OriginalItemSpec": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\app.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -164,10 +164,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -185,10 +185,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -206,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/datatables#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -227,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\css\\datatables.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.min.css",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "css/datatables.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -248,10 +248,10 @@
       "OriginalItemSpec": "wwwroot\\css\\datatables.min.css"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\encryption.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "encryption#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -269,10 +269,10 @@
       "OriginalItemSpec": "wwwroot\\encryption.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\favicon.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -290,10 +290,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\cutie.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/cutie#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -311,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\images\\cutie.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "images/logo#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -332,10 +332,10 @@
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/datatables#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -353,10 +353,10 @@
       "OriginalItemSpec": "wwwroot\\js\\datatables.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.min.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/datatables.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -374,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\js\\datatables.min.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\selectize.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "js/selectize#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -395,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\js\\selectize.js"
     },
     {
-      "Identity": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\site.js",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
-      "ContentRoot": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
       "BasePath": "_content/BlazorApp1",
       "RelativePath": "site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -657,7 +657,7 @@
     },
     {
       "Route": "app.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -678,7 +678,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Feb 2025 02:22:21 GMT"
+          "Value": "Thu, 20 Feb 2025 00:42:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -694,7 +694,7 @@
     },
     {
       "Route": "app.oqo1pe066o.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\app.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -715,7 +715,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 19 Feb 2025 02:22:21 GMT"
+          "Value": "Thu, 20 Feb 2025 00:42:21 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -739,7 +739,7 @@
     },
     {
       "Route": "BlazorApp1.5508cusxa3.bundle.scp.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -784,7 +784,7 @@
     },
     {
       "Route": "BlazorApp1.bundle.scp.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -821,7 +821,7 @@
     },
     {
       "Route": "BlazorApp1.styles.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -862,7 +862,7 @@
     },
     {
       "Route": "BlazorApp1.xog9zi6hs7.styles.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\obj\\Debug\\net8.0\\scopedcss\\bundle\\BlazorApp1.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -911,7 +911,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -956,7 +956,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -993,7 +993,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1038,7 +1038,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1075,7 +1075,7 @@
     },
     {
       "Route": "css/datatables.cdjxpgo22y.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1120,7 +1120,7 @@
     },
     {
       "Route": "css/datatables.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1157,7 +1157,7 @@
     },
     {
       "Route": "css/datatables.min.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1194,7 +1194,7 @@
     },
     {
       "Route": "css/datatables.min.o12on7tvtw.css",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\css\\datatables.min.css",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\css\\datatables.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1239,7 +1239,7 @@
     },
     {
       "Route": "encryption.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\encryption.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1276,7 +1276,7 @@
     },
     {
       "Route": "encryption.myh10lorm3.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\encryption.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\encryption.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1321,7 +1321,7 @@
     },
     {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1366,7 +1366,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\favicon.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1403,7 +1403,7 @@
     },
     {
       "Route": "images/cutie.j4pu8s7ezv.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\cutie.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1448,7 +1448,7 @@
     },
     {
       "Route": "images/cutie.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\cutie.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\cutie.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1485,7 +1485,7 @@
     },
     {
       "Route": "images/logo.8gosucnwnt.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1530,7 +1530,7 @@
     },
     {
       "Route": "images/logo.png",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\images\\logo.png",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1567,7 +1567,7 @@
     },
     {
       "Route": "js/datatables.377tinzkhw.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1612,7 +1612,7 @@
     },
     {
       "Route": "js/datatables.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1649,7 +1649,7 @@
     },
     {
       "Route": "js/datatables.min.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1686,7 +1686,7 @@
     },
     {
       "Route": "js/datatables.min.kw8rracep0.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\datatables.min.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1731,7 +1731,7 @@
     },
     {
       "Route": "js/selectize.776mlns86c.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\selectize.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1776,7 +1776,7 @@
     },
     {
       "Route": "js/selectize.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\js\\selectize.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\selectize.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1813,7 +1813,7 @@
     },
     {
       "Route": "site.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1850,7 +1850,7 @@
     },
     {
       "Route": "site.wesm1lclwd.js",
-      "AssetFile": "F:\\BlazorApp1\\blazorApp1\\wwwroot\\site.js",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {

@@ -1,0 +1,15 @@
+
+@inject NavigationManager Navigation
+@inject ProtectedSessionStorage ProtectedSessionStore
+@layout MainLayout
+@inject ModalService ModalService
+
+<button @onclick="BackToEmployeePage">Logout</button>
+@code{
+    private async Task BackToEmployeePage()
+    {
+        await ProtectedSessionStore.DeleteAsync("UserId");
+
+        Navigation.NavigateTo("/");
+    }
+}
