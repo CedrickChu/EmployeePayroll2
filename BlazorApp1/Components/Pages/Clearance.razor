@@ -9,7 +9,7 @@
 
 <style>
     .row:hover {
-        background-color: #e6e6e6;
+        background-color: #d1d0d0;
         transition: background-color 0.3s ease-in-out;
     }
 
@@ -23,6 +23,18 @@
 
     .no-hover:hover {
         background-color: inherit !important;
+    }
+
+    .custom-btn {
+        background-color: red !important;
+        border-color: red !important;
+    }
+
+    .custom-btn:hover {
+        background-color: darkred !important;
+    }
+    #basic-addon2:hover{
+        background-color: #d1d0d0;
     }
 </style>
 <PageTitle>Clearance</PageTitle>
@@ -97,16 +109,14 @@
             <div class="modal-body">
                 <div class="position-relative border p-3 mb-3 rounded" id="accountabilityrow">
 
-                    <span class="position-absolute top-0 start-0 translate-middle-y bg-white px-2 text-secondary ms-3">
-                        TITLE empty
-                    </span>
 
-                    <div class="row g-1 align-items-center">
+
+                    <div class="row no-hover g-1 align-items-center">
                         <div class="col-auto">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="@selectedPeriod" readonly disabled>
 
-                                <!-- Restrict click action to only the image -->
+
                                 <button class="input-group-text p-1" id="basic-addon2">
                                     <img src="images/plus-lg.svg" style="cursor: pointer;" @onclick="ShowPeriodModal">
                                 </button>
@@ -122,13 +132,9 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-                <table class="table table-striped" id="dataTable">
-                    <thead>
-                        <tr>
+                <table class="table table-striped" id="dataTable" style="font-size: 14px;;">
+                    <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
+                        <tr class="text-center">
                             <th>Accountability</th>
                             <th>Employee</th>
                             <th>Position</th>
@@ -148,13 +154,28 @@
 
 
                                 <tr>
-                                    <td>@accountabilityDesc</td <td><a href="" class="hover-underline">Insert Employee/ Leave
-                                        Blank (All Employee)..</a></td>
+                                    <td>@accountabilityDesc</td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(accountability.EmployeeName)){
+                                            <span class="hover-underline text-primary" style="cursor: pointer;"
+                                            @onclick="OpenInsertEmployeeModal">
+                                            Insert Employee/ Leave Blank (All Employee)..
+                                        </span>
+                                        }
+                                        else{
+                                            <span class="hover-underline text-primary" style="cursor: pointer;"
+                                            @onclick="OpenInsertEmployeeModal">
+                                            @accountability.EmployeeName
+                                            </span>
+                                        }
+                                    </td>
                                     <td>@accountability.Position</td>
                                     <td>@accountability.OfficeName</td>
-                                    <td><a href="" class="hover-underline text-danger">Insert Sub-Signatory/Leave
-                                            Blank(default)</a></td>
-                                    <td><button class="btn btn-sm btn-primary">Add Signatory</button></td>
+                                    <td><span class="hover-underline text-danger" style="cursor: pointer;"
+                                            @onclick="OpenInsertEmployeeModal">
+                                            Insert Sub-Signatory/Leave Blank(default)
+                                        </span></td>
+                                    <td><input type="text" style="display: none;"></td>
                                 </tr>
                             }
                         }
@@ -194,6 +215,50 @@
         </div>
     </div>
 </div>
+
+<!-- Insert Employee Modal -->
+<div class="modal fade" id="insertEmployeeModal" tabindex="-1" aria-labelledby="insertEmployeeModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Insert Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="position-relative border p-3 mb-3 rounded">
+                    <span class="position-absolute top-0 start-0 translate-middle-y bg-white px-2 text-secondary ms-3">
+                        Search
+                    </span>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search Employee">
+                        <button type="submit" class="btn btn-secondary w-4"><img src="images/search.svg"
+                                style="cursor: pointer;"></button>
+                    </div>
+                </div>
+
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office/Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Insert Employee</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @code {
     private int? selectedPeriodId = null;
@@ -268,6 +333,11 @@
         }
     }
 
+    private async Task OpenInsertEmployeeModal()
+    {
+        await JS.InvokeVoidAsync("showModal", "#insertEmployeeModal");
+    }
+
     private async Task GetAllPeriod()
     {
         try
@@ -304,7 +374,6 @@
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(json);
                 accountabilities = JsonSerializer.Deserialize<List<Accountabilities>>(json);
                 if (accountabilities == null || accountabilities.Count == 0)
                 {
@@ -368,8 +437,6 @@
             var client = HttpClientFactory.CreateClient("MyApi");
             var response = await client.GetFromJsonAsync<int?>($"api/My/GetAccountabilityTemplateId/{selectedPeriodId}/{userId}");
 
-            Console.WriteLine($"Received AccountabilityTemplateId: {response}");
-
             if (response == null)
             {
                 errorMessage = "No Accountability Template Id found.";
@@ -405,7 +472,6 @@
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(json);
                 accountabilityDetails = JsonSerializer.Deserialize<List<AccountabilityDetails>>(json) ?? new
                 List<AccountabilityDetails>();
 

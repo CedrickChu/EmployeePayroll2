@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Hz1wYa8fFivJH83KX7Wwwi1GAr7zPnLabcXcYVJHniQ=",
+  "Hash": "R4s+J1D8QI+uBNeSebP5pbyD6s8YEhDUylQkGCeTytE=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -435,6 +435,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\plus-lg.svg"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\search.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/search#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "77y814o6z3",
+      "Integrity": "3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\search.svg"
     },
     {
       "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
@@ -2098,6 +2119,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A="
+        }
+      ]
+    },
+    {
+      "Route": "images/search.77y814o6z3.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\search.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "315"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:04:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "77y814o6z3"
+        },
+        {
+          "Name": "label",
+          "Value": "images/search.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock="
+        }
+      ]
+    },
+    {
+      "Route": "images/search.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\search.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "315"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 08:04:09 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock="
         }
       ]
     },

@@ -180,6 +180,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"267"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u0022jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A=\u0022"},{"Name":"Last-Modified","Value":"Mon, 24 Feb 2025 06:56:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/BlazorApp1/images/search.77y814o6z3.svg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\search.svg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"77y814o6z3"},{"Name":"integrity","Value":"sha256-3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock="},{"Name":"label","Value":"_content/BlazorApp1/images/search.svg"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"315"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u00223W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock=\u0022"},{"Name":"Last-Modified","Value":"Mon, 24 Feb 2025 08:04:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/BlazorApp1/images/search.svg">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\search.svg'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-3W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"315"},{"Name":"Content-Type","Value":"image/svg\u002Bxml"},{"Name":"ETag","Value":"\u00223W9HH0hyQiff3nLWJTqYAj1Lc00GuQo9kyz2mOOqock=\u0022"},{"Name":"Last-Modified","Value":"Mon, 24 Feb 2025 08:04:09 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/BlazorApp1/js/datatables.377tinzkhw.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\datatables.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

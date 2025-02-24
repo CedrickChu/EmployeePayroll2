@@ -21,7 +21,6 @@ builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
         googleOptions.AccessDeniedPath = "/external-login-denied";
     });
 
-
     // builder.Services.AddHttpClient("ApiClient", client =>
     // {
     //     client.BaseAddress = new Uri("https://10.125.1.6:7087/api/My/");

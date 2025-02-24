@@ -61,6 +61,10 @@
       "PackagePath": "staticwebassets\\images\\plus-lg.svg"
     },
     {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\search.svg",
+      "PackagePath": "staticwebassets\\images\\search.svg"
+    },
+    {
       "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
       "PackagePath": "staticwebassets\\js\\datatables.js"
     },

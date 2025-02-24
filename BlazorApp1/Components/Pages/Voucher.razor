@@ -90,10 +90,7 @@
                             <td style="text-align: left; vertical-align:middle;">@voucher.GrossAmount.ToString("N2")</td>
                             <td style="text-align: left; vertical-align:middle;">@voucher.NetAmount.ToString("N2")</td>
                             <td  style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.FundDescription) ? "N/A" : voucher.FundDescription)</td>
-
                             <td style="vertical-align: middle;text-align: justify;">@(string.IsNullOrEmpty(voucher.Particulars) ? "N/A" : voucher.Particulars)</td>
-                            
-
                             <td  class='text-center' style="vertical-align:middle;">@(string.IsNullOrEmpty(voucher.Remarks) ? "N/A" : voucher.Remarks)</td>
                         </tr>
                     }
