@@ -37,8 +37,28 @@
       "PackagePath": "staticwebassets\\images\\cutie.png"
     },
     {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye-slash.svg",
+      "PackagePath": "staticwebassets\\images\\eye-slash.svg"
+    },
+    {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye.svg",
+      "PackagePath": "staticwebassets\\images\\eye.svg"
+    },
+    {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\key.svg",
+      "PackagePath": "staticwebassets\\images\\key.svg"
+    },
+    {
       "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\person.svg",
+      "PackagePath": "staticwebassets\\images\\person.svg"
+    },
+    {
+      "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\plus-lg.svg",
+      "PackagePath": "staticwebassets\\images\\plus-lg.svg"
     },
     {
       "Id": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L8p00mz4MpDTpVqQtWR/uB+oWsDfZsbAOC8fBYXjb0s=",
+  "Hash": "Hz1wYa8fFivJH83KX7Wwwi1GAr7zPnLabcXcYVJHniQ=",
   "Source": "BlazorApp1",
   "BasePath": "_content/BlazorApp1",
   "Mode": "Default",
@@ -311,6 +311,69 @@
       "OriginalItemSpec": "wwwroot\\images\\cutie.png"
     },
     {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye-slash.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/eye-slash#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zcxw34fek2",
+      "Integrity": "41OU1dJ0J3M/s2UIiOwCnd1rhV7XfgNoAz3YZE2mOkI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\eye-slash.svg"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/eye#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3ftp2fgkyl",
+      "Integrity": "Lz85DRuzibdT+Rg8+sZT4zWPm0oRMTrg3+loqRf4K+I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\eye.svg"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\key.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/key#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "5week0rcfo",
+      "Integrity": "5YaLL+Uc1/Zz7/1SSONvibB7a20tEW9sl7ejbnXf694=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\key.svg"
+    },
+    {
       "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "SourceId": "BlazorApp1",
       "SourceType": "Discovered",
@@ -330,6 +393,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\logo.png"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\person.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/person#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "shyusiue6w",
+      "Integrity": "4HHbG/yQvTC8Yh0U6bHJtdGVuTLXAn1l4eMPvZ/79sk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\person.svg"
+    },
+    {
+      "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\plus-lg.svg",
+      "SourceId": "BlazorApp1",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\",
+      "BasePath": "_content/BlazorApp1",
+      "RelativePath": "images/plus-lg#[.{fingerprint}]?.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "cqwvybn5kd",
+      "Integrity": "jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\plus-lg.svg"
     },
     {
       "Identity": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\js\\datatables.js",
@@ -430,8 +535,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "3sqt4d90fl",
-      "Integrity": "LWv/VNuI1O6LWkNddu5shCDwbs82I8TJWi3iNz0n+aU=",
+      "Fingerprint": "9phwgq1jfk",
+      "Integrity": "nakyUFNv+3ltZLW5MATiKOCf7Cok2qDOgkDLCxMpCUU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\site.js"
@@ -1505,6 +1610,252 @@
       ]
     },
     {
+      "Route": "images/eye-slash.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye-slash.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "797"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"41OU1dJ0J3M/s2UIiOwCnd1rhV7XfgNoAz3YZE2mOkI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-41OU1dJ0J3M/s2UIiOwCnd1rhV7XfgNoAz3YZE2mOkI="
+        }
+      ]
+    },
+    {
+      "Route": "images/eye-slash.zcxw34fek2.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye-slash.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "797"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"41OU1dJ0J3M/s2UIiOwCnd1rhV7XfgNoAz3YZE2mOkI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zcxw34fek2"
+        },
+        {
+          "Name": "label",
+          "Value": "images/eye-slash.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-41OU1dJ0J3M/s2UIiOwCnd1rhV7XfgNoAz3YZE2mOkI="
+        }
+      ]
+    },
+    {
+      "Route": "images/eye.3ftp2fgkyl.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "519"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Lz85DRuzibdT+Rg8+sZT4zWPm0oRMTrg3+loqRf4K+I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3ftp2fgkyl"
+        },
+        {
+          "Name": "label",
+          "Value": "images/eye.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Lz85DRuzibdT+Rg8+sZT4zWPm0oRMTrg3+loqRf4K+I="
+        }
+      ]
+    },
+    {
+      "Route": "images/eye.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\eye.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "519"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Lz85DRuzibdT+Rg8+sZT4zWPm0oRMTrg3+loqRf4K+I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Lz85DRuzibdT+Rg8+sZT4zWPm0oRMTrg3+loqRf4K+I="
+        }
+      ]
+    },
+    {
+      "Route": "images/key.5week0rcfo.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\key.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "628"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5YaLL+Uc1/Zz7/1SSONvibB7a20tEW9sl7ejbnXf694=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5week0rcfo"
+        },
+        {
+          "Name": "label",
+          "Value": "images/key.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-5YaLL+Uc1/Zz7/1SSONvibB7a20tEW9sl7ejbnXf694="
+        }
+      ]
+    },
+    {
+      "Route": "images/key.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\key.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "628"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"5YaLL+Uc1/Zz7/1SSONvibB7a20tEW9sl7ejbnXf694=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:29:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-5YaLL+Uc1/Zz7/1SSONvibB7a20tEW9sl7ejbnXf694="
+        }
+      ]
+    },
+    {
       "Route": "images/logo.8gosucnwnt.png",
       "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\logo.png",
       "Selectors": [],
@@ -1583,6 +1934,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-OJdt5vSLoqXexMD+k8S3IrAMuTIzLcXy/xjPN/LiYGE="
+        }
+      ]
+    },
+    {
+      "Route": "images/person.shyusiue6w.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\person.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "375"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4HHbG/yQvTC8Yh0U6bHJtdGVuTLXAn1l4eMPvZ/79sk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:28:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "shyusiue6w"
+        },
+        {
+          "Name": "label",
+          "Value": "images/person.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-4HHbG/yQvTC8Yh0U6bHJtdGVuTLXAn1l4eMPvZ/79sk="
+        }
+      ]
+    },
+    {
+      "Route": "images/person.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\person.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "375"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"4HHbG/yQvTC8Yh0U6bHJtdGVuTLXAn1l4eMPvZ/79sk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:28:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-4HHbG/yQvTC8Yh0U6bHJtdGVuTLXAn1l4eMPvZ/79sk="
+        }
+      ]
+    },
+    {
+      "Route": "images/plus-lg.cqwvybn5kd.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\plus-lg.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "267"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:56:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "cqwvybn5kd"
+        },
+        {
+          "Name": "label",
+          "Value": "images/plus-lg.svg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A="
+        }
+      ]
+    },
+    {
+      "Route": "images/plus-lg.svg",
+      "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\images\\plus-lg.svg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "267"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/svg+xml"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 24 Feb 2025 06:56:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jCrjlulRDI7ALc0NP64wHm6pPt34fXV2v3fBuYJbg0A="
         }
       ]
     },
@@ -1915,7 +2430,7 @@
       ]
     },
     {
-      "Route": "site.3sqt4d90fl.js",
+      "Route": "site.9phwgq1jfk.js",
       "AssetFile": "F:\\BlazorApp1\\blazorapp1\\wwwroot\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1925,7 +2440,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1121"
+          "Value": "1335"
         },
         {
           "Name": "Content-Type",
@@ -1933,11 +2448,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LWv/VNuI1O6LWkNddu5shCDwbs82I8TJWi3iNz0n+aU=\""
+          "Value": "\"nakyUFNv+3ltZLW5MATiKOCf7Cok2qDOgkDLCxMpCUU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 09:51:43 GMT"
+          "Value": "Mon, 24 Feb 2025 06:08:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1947,7 +2462,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "3sqt4d90fl"
+          "Value": "9phwgq1jfk"
         },
         {
           "Name": "label",
@@ -1955,7 +2470,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-LWv/VNuI1O6LWkNddu5shCDwbs82I8TJWi3iNz0n+aU="
+          "Value": "sha256-nakyUFNv+3ltZLW5MATiKOCf7Cok2qDOgkDLCxMpCUU="
         }
       ]
     },
@@ -1970,7 +2485,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1121"
+          "Value": "1335"
         },
         {
           "Name": "Content-Type",
@@ -1978,11 +2493,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LWv/VNuI1O6LWkNddu5shCDwbs82I8TJWi3iNz0n+aU=\""
+          "Value": "\"nakyUFNv+3ltZLW5MATiKOCf7Cok2qDOgkDLCxMpCUU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 20 Feb 2025 09:51:43 GMT"
+          "Value": "Mon, 24 Feb 2025 06:08:30 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1992,7 +2507,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-LWv/VNuI1O6LWkNddu5shCDwbs82I8TJWi3iNz0n+aU="
+          "Value": "sha256-nakyUFNv+3ltZLW5MATiKOCf7Cok2qDOgkDLCxMpCUU="
         }
       ]
     }

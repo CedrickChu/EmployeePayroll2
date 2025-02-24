@@ -29,7 +29,7 @@ window.initSelectize = (id) => {
 };
 
 function initializeDataTable() {
-    $('#example1').DataTable({
+    $('#dataTable').DataTable({
         responsive: true,
         lengthChange: false,
         paging: true,
@@ -37,4 +37,14 @@ function initializeDataTable() {
         buttons: ["copy", "excel", "colVis"],
         order: [[0, 'desc']]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#payslipTable').DataTable({
+        responsive: true,
+        lengthChange: false,
+        paging: true,
+        dom: 'Bfrtip',
+        buttons: [],
+        order: [[0, 'desc']]
+    });
+    
+    
 }

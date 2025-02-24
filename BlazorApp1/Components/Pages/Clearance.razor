@@ -9,11 +9,20 @@
 
 <style>
     .row:hover {
-    background-color: #e6e6e6; 
-    transition: background-color 0.3s ease-in-out;
-}
-    #basic-addon2{
-        height: 50px;
+        background-color: #e6e6e6;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .hover-underline {
+        text-decoration: none;
+    }
+
+    .hover-underline:hover {
+        text-decoration: underline;
+    }
+
+    .no-hover:hover {
+        background-color: inherit !important;
     }
 </style>
 <PageTitle>Clearance</PageTitle>
@@ -27,16 +36,20 @@
             <hr class='text-primary' style="width: 140px; height:3px; margin-top: -5px; opacity: 100%;">
         </div>
         <div class="container border border-2">
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("General")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("General")'>
                 <p class="mb-0">General</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Regular Faculty")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Regular Faculty")'>
                 <p class="mb-0">Regular Faculty</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Non-Regular Faculty")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Non-Regular Faculty")'>
                 <p class="mb-0">Non-Regular Faculty</p>
             </div>
-            <div class="row align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Non-Regular Admin Staff")'>
+            <div class="row align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Non-Regular Admin Staff")'>
                 <p class="mb-0">Non-Regular Admin Staff</p>
             </div>
         </div>
@@ -44,22 +57,28 @@
         <h5 class="text-primary">Other Options</h5>
         <p style="margin-top: -10px;">Please choose the type of clearance you wish to process.</p>
         <div class="container border border-2">
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Review Clearance Request")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Review Clearance Request")'>
                 <p class="mb-0">Review Clearance Request</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("View My Clearances")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("View My Clearances")'>
                 <p class="mb-0">View My Clearances</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Prepare Accountabilities")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Prepare Accountabilities")'>
                 <p class="mb-0">Prepare Accountabilities</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Create/View Clearance Template")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Create/View Clearance Template")'>
                 <p class="mb-0">Create/View Clearance Template</p>
             </div>
-            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Clearance Purpose List")'>
+            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Clearance Purpose List")'>
                 <p class="mb-0">Clearance Purpose List</p>
             </div>
-            <div class="row align-items-center py-2" style="cursor: pointer;" @onclick='() => HandleClick("Clearance Office List")'>
+            <div class="row align-items-center py-2" style="cursor: pointer;"
+                @onclick='() => HandleClick("Clearance Office List")'>
                 <p class="mb-0">Clearance Office List</p>
             </div>
         </div>
@@ -67,66 +86,87 @@
 </section>
 
 <!-- Accountability Modal -->
-<div class="modal fade" id="accountabilityModal" tabindex="-1" aria-labelledby="accountabilityModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Clearance Accountability Template</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container-left" style="width: 250px;">
-            <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-describedby="basic-addon2" placeholder="@selectedPeriod" readonly>
-            <div class="input-group-append" @onclick='() => ShowPeriodModal()'>
-                <span class="input-group-text" id="basic-addon2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-card-list" viewBox="0 0 16 16">
-                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0"/>
-                    </svg> 
-                </span>
+<div class="modal fade" id="accountabilityModal" tabindex="-1" aria-labelledby="accountabilityModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Clearance Accountability Template</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="position-relative border p-3 mb-3 rounded" id="accountabilityrow">
+
+                    <span class="position-absolute top-0 start-0 translate-middle-y bg-white px-2 text-secondary ms-3">
+                        TITLE empty
+                    </span>
+
+                    <div class="row g-1 align-items-center">
+                        <div class="col-auto">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="@selectedPeriod" readonly disabled>
+
+                                <!-- Restrict click action to only the image -->
+                                <button class="input-group-text p-1" id="basic-addon2">
+                                    <img src="images/plus-lg.svg" style="cursor: pointer;" @onclick="ShowPeriodModal">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-auto">
+                            @if (accountabilityDetails.Count == 0)
+                            {
+                                <p class="text-danger mb-0 ms-3">Accountability Preparation for this period has not been set
+                                </p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <table class="table table-striped" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Accountability</th>
+                            <th>Employee</th>
+                            <th>Position</th>
+                            <th>Office/Department</th>
+                            <th>Insert Sub-Signatory</th>
+                            <th>Remarks</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @if (accountabilityDetails != null && accountabilityDetails.Count > 0)
+                        {
+                            @foreach (var accountability in accountabilityDetails)
+                            {
+                                var accountabilityDesc = accountabilities.FirstOrDefault(a => a.AccountabilityId ==
+                                accountability.AccountabilityId)?.Description ?? "N/A";
+
+
+                                <tr>
+                                    <td>@accountabilityDesc</td <td><a href="" class="hover-underline">Insert Employee/ Leave
+                                        Blank (All Employee)..</a></td>
+                                    <td>@accountability.Position</td>
+                                    <td>@accountability.OfficeName</td>
+                                    <td><a href="" class="hover-underline text-danger">Insert Sub-Signatory/Leave
+                                            Blank(default)</a></td>
+                                    <td><button class="btn btn-sm btn-primary">Add Signatory</button></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
-        </div>
-        
-        <table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Accountability</th>
-            <th>Employee</th>
-            <th>Position</th>
-            <th>Office/Department</th>
-            <th>Insert Sub-Signatory</th>
-            <th>Remarks</th>
-        </tr>
-    </thead>
-    <tbody>
-       
-        @if (accountabilities != null && accountabilities.Count > 0)
-        {
-            @foreach (var accountability in accountabilities)
-            {
-                <tr>
-                    <td>@accountability.Description</td>
-                    <td><a href="">Insert Employee/ Leave Blank(All Employee)..</a></td>
-                    <td>@accountability.FullName</td>
-                    <td>A</td>
-                    <td>A</td>
-                    <td><button class="btn btn-sm btn-primary">Add Signatory</button></td>
-                </tr>
-            }
-        }
-        
-    </tbody>
-</table>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
-  </div>
 </div>
 
 <!-- Period Modal -->
@@ -143,9 +183,8 @@
                     {
                         @foreach (var data in period)
                         {
-                            <div class="row border-bottom border-2 align-items-center py-2" 
-                                 style="cursor: pointer;" 
-                                 @onclick="() => OnPeriodChange(data.PeriodId)">
+                            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                                @onclick="() => OnPeriodChange(data.PeriodId)">
                                 <p class="mb-0">@data.Description</p>
                             </div>
                         }
@@ -161,8 +200,10 @@
     private string? selectedPeriod;
     private string? errorMessage;
     private int? userId;
+    private int? AccountabilityTemplateId;
     private List<Period>? period = new List<Period>();
     private List<Accountabilities> accountabilities = new List<Accountabilities>();
+    private List<AccountabilityDetails> accountabilityDetails = new List<AccountabilityDetails>();
     public class IdNumberConverter : JsonConverter<int?>
     {
         public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -183,10 +224,33 @@
         }
     }
 
-    private async Task HandleClick(string name)
+    private async Task HandleClick(string action)
     {
-        await JS.InvokeVoidAsync("showModal", "#accountabilityModal");
-        await GetAllAccountabilities();
+        switch (action)
+        {
+            case "Review Clearance Request":
+                await JS.InvokeVoidAsync("showModal", "#reviewClearanceModal");
+                break;
+            case "View My Clearances":
+                await JS.InvokeVoidAsync("showModal", "#viewClearancesModal");
+                break;
+            case "Prepare Accountabilities":
+                await JS.InvokeVoidAsync("showModal", "#accountabilityModal");
+                await GetAllAccountabilities();
+                break;
+            case "Create/View Clearance Template":
+                await JS.InvokeVoidAsync("showModal", "#clearanceTemplateModal");
+                break;
+            case "Clearance Purpose List":
+                await JS.InvokeVoidAsync("showModal", "#clearancePurposeModal");
+                break;
+            case "Clearance Office List":
+                await JS.InvokeVoidAsync("showModal", "#clearanceOfficeModal");
+                break;
+            default:
+                Console.WriteLine("Unknown action: " + action);
+                break;
+        }
     }
 
     private async Task ShowPeriodModal()
@@ -259,31 +323,35 @@
     }
     private async Task OnPeriodChange(int periodId)
     {
-        if (selectedPeriodId != periodId)
+        if (selectedPeriodId == periodId)
+            return;
+
+        selectedPeriodId = periodId;
+        selectedPeriod = period?.FirstOrDefault(p => p.PeriodId == periodId)?.Description ?? "";
+
+        accountabilityDetails.Clear();
+        StateHasChanged();
+
+        var resultUserId = await ProtectedSessionStore.GetAsync<int?>("UserId");
+        userId = resultUserId.Success ? resultUserId.Value : null;
+
+        if (userId == null)
         {
-            selectedPeriodId = periodId;
-            selectedPeriod = period?.FirstOrDefault(p => p.PeriodId == periodId)?.Description ?? "";
-
-            // Retrieve UserId from session storage
-            var result = await ProtectedSessionStore.GetAsync<int?>("UserId");
-            userId = result.Success ? result.Value : null;
-
-            if (userId == null)
-            {
-                errorMessage = "User ID not found in session.";
-                return;
-            }
-
-            Console.WriteLine($"Selected period Updated: {selectedPeriodId}");
-            Console.WriteLine("UserId: " + userId);
-
-            // Fetch Accountability Template ID only if values are valid
-            await GetAccountabilityTemplateId();
-
-            // Close modal & refresh UI
-            await JS.InvokeVoidAsync("closeModal", "#periodModal");
-            StateHasChanged();
+            errorMessage = "User ID not found in session.";
+            return;
         }
+
+        var templateId = await GetAccountabilityTemplateId();
+        AccountabilityTemplateId = templateId;
+
+        await JS.InvokeVoidAsync("closeModal", "#periodModal");
+
+        if (templateId != null)
+        {
+            await GetAccountabilityTemplateDetails(templateId);
+        }
+
+        StateHasChanged();
     }
     private async Task<int?> GetAccountabilityTemplateId()
     {
@@ -317,10 +385,51 @@
             return null;
         }
     }
+    private async Task GetAccountabilityTemplateDetails(int? AccountabilityTemplateId)
+    {
+        if (AccountabilityTemplateId == null)
+        {
+            errorMessage = "Accountability Template Not Found";
+            accountabilityDetails.Clear();
+            StateHasChanged();
+            return;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetAsync($"api/My/GetAccountabilityTemplateDetails/{AccountabilityTemplateId}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+                accountabilityDetails = JsonSerializer.Deserialize<List<AccountabilityDetails>>(json) ?? new
+                List<AccountabilityDetails>();
+
+                if (accountabilityDetails.Count == 0)
+                {
+                    errorMessage = "No Accountability Details data found for this employee.";
+                }
+            }
+            else
+            {
+                errorMessage = "Failed to fetch payroll details.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+
+        StateHasChanged(); // Ensure UI updates
+    }
 
 
 
-    
+
 }
 
 
