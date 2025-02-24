@@ -38,6 +38,15 @@ builder.Services.AddAuthentication(Constants.Auth.AuthScheme)
 
     //     return handler;
     // });
+var handler = new HttpClientHandler
+{
+    ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+};
+
+builder.Services.AddHttpClient("MyApi", client =>
+{
+    client.BaseAddress = new Uri("https://10.125.1.6:7087/");
+}).ConfigurePrimaryHttpMessageHandler(() => handler);
 
 builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<EncryptionHelper>();

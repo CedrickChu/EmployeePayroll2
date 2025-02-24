@@ -3,7 +3,10 @@
 @using System.Text.Json
 @using System.Text.Json.Serialization
 @inject IHttpClientFactory ClientFactory
+@inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JS
+@inject ProtectedSessionStorage ProtectedSessionStore
+
 <style>
     .row:hover {
     background-color: #e6e6e6; 
@@ -97,34 +100,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Office Equipment</td>
-            <td>John Doe</td>
-            <td>Manager</td>
-            <td>Finance</td>
-            <td>
-                <button class="btn btn-sm btn-primary">Add Signatory</button>
-            </td>
-            <td>
-                
-            </td>
-        </tr>
-        <tr>
-            <td>Company Vehicle</td>
-            <td>Jane Smith</td>
-            <td>Supervisor</td>
-            <td>Operations</td>
-            <td>
-                <button class="btn btn-sm btn-primary">Add Signatory</button>
-            </td>
-            <td>
-                <select class="form-select">
-                    <option>Pending</option>
-                    <option>Approved</option>
-                    <option>Rejected</option>
-                </select>
-            </td>
-        </tr>
+       
+        @if (accountabilities != null && accountabilities.Count > 0)
+        {
+            @foreach (var accountability in accountabilities)
+            {
+                <tr>
+                    <td>@accountability.Description</td>
+                    <td><a href="">Insert Employee/ Leave Blank(All Employee)..</a></td>
+                    <td>@accountability.FullName</td>
+                    <td>A</td>
+                    <td>A</td>
+                    <td><button class="btn btn-sm btn-primary">Add Signatory</button></td>
+                </tr>
+            }
+        }
+        
     </tbody>
 </table>
 
@@ -152,7 +143,9 @@
                     {
                         @foreach (var data in period)
                         {
-                            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;" @onclick="() => selectPeriod(data.Description)">
+                            <div class="row border-bottom border-2 align-items-center py-2" 
+                                 style="cursor: pointer;" 
+                                 @onclick="() => OnPeriodChange(data.PeriodId)">
                                 <p class="mb-0">@data.Description</p>
                             </div>
                         }
@@ -164,13 +157,36 @@
 </div>
 
 @code {
+    private int? selectedPeriodId = null;
     private string? selectedPeriod;
     private string? errorMessage;
+    private int? userId;
     private List<Period>? period = new List<Period>();
+    private List<Accountabilities> accountabilities = new List<Accountabilities>();
+    public class IdNumberConverter : JsonConverter<int?>
+    {
+        public override int? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        {
+            if (reader.TokenType == JsonTokenType.String)
+            {
+                if (int.TryParse(reader.GetString(), out int result))
+                {
+                    return result;
+                }
+            }
+            return null;
+        }
+
+        public override void Write(Utf8JsonWriter writer, int? value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value?.ToString());
+        }
+    }
 
     private async Task HandleClick(string name)
     {
         await JS.InvokeVoidAsync("showModal", "#accountabilityModal");
+        await GetAllAccountabilities();
     }
 
     private async Task ShowPeriodModal()
@@ -178,7 +194,6 @@
         await JS.InvokeVoidAsync("showModal", "#periodModal");
         await GetAllPeriod();
     }
-
     private async Task selectPeriod(string? description)
     {
         if (!string.IsNullOrEmpty(description))
@@ -193,13 +208,8 @@
     {
         try
         {
-            using var handler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
-
-            using var client = new HttpClient(handler);
-            var response = await client.GetAsync("https://10.125.1.6:7087/api/my/GetAllPeriods");
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetAsync("api/my/GetAllPeriods");
 
             if (response.IsSuccessStatusCode)
             {
@@ -221,6 +231,96 @@
             errorMessage = $"An error occurred: {ex.Message}";
         }
     }
+    private async Task GetAllAccountabilities()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetAsync("api/my/Getallaccountabilities");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(json);
+                accountabilities = JsonSerializer.Deserialize<List<Accountabilities>>(json);
+                if (accountabilities == null || accountabilities.Count == 0)
+                {
+                    errorMessage = "Unable to parse or empty Accountability data.";
+                }
+            }
+            else
+            {
+                errorMessage = $"Failed to load accountability data. Status code: {response.StatusCode}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+        }
+    }
+    private async Task OnPeriodChange(int periodId)
+    {
+        if (selectedPeriodId != periodId)
+        {
+            selectedPeriodId = periodId;
+            selectedPeriod = period?.FirstOrDefault(p => p.PeriodId == periodId)?.Description ?? "";
+
+            // Retrieve UserId from session storage
+            var result = await ProtectedSessionStore.GetAsync<int?>("UserId");
+            userId = result.Success ? result.Value : null;
+
+            if (userId == null)
+            {
+                errorMessage = "User ID not found in session.";
+                return;
+            }
+
+            Console.WriteLine($"Selected period Updated: {selectedPeriodId}");
+            Console.WriteLine("UserId: " + userId);
+
+            // Fetch Accountability Template ID only if values are valid
+            await GetAccountabilityTemplateId();
+
+            // Close modal & refresh UI
+            await JS.InvokeVoidAsync("closeModal", "#periodModal");
+            StateHasChanged();
+        }
+    }
+    private async Task<int?> GetAccountabilityTemplateId()
+    {
+        if (selectedPeriodId == null || userId == null)
+        {
+            errorMessage = "Invalid Selected Period or User ID";
+            return null;
+        }
+
+        errorMessage = null;
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetFromJsonAsync<int?>($"api/My/GetAccountabilityTemplateId/{selectedPeriodId}/{userId}");
+
+            Console.WriteLine($"Received AccountabilityTemplateId: {response}");
+
+            if (response == null)
+            {
+                errorMessage = "No Accountability Template Id found.";
+                return null;
+            }
+
+            await ProtectedSessionStore.SetAsync("AccountabilityTemplateId", response);
+            return response;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An error occurred: {ex.Message}";
+            return null;
+        }
+    }
+
+
+
+    
 }
 
 

@@ -2,7 +2,8 @@
 @layout LoginLayout
 @rendermode InteractiveServer
 @inject IHttpClientFactory ClientFactory    
-@* @inject IJSRuntime JS *@
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime JS
 @inject HttpClient Http
 @inject NavigationManager Navigation
 @inject ProtectedSessionStorage ProtectedSessionStore
@@ -88,13 +89,9 @@
 
         try
         {
-            var handler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
 
-            using var client = new HttpClient(handler);
-            var response = await client.GetFromJsonAsync<int?>($"https://10.125.1.6:7087/api/My/getemployeeid/{username}/{password}");
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetFromJsonAsync<int?>($"api/My/getemployeeid/{username}/{password}");
 
             if (response == null)
             {
@@ -118,13 +115,8 @@
         
         try
         {
-            var handler = new HttpClientHandler
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
-
-            using var client = new HttpClient(handler);
-            var response = await client.GetFromJsonAsync<int?>($"https://10.125.1.6:7087/api/My/getpayeeid/{userId}");
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetFromJsonAsync<int?>($"api/My/getpayeeid/{userId}");
 
             if (response == null)
             {

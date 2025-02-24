@@ -55,8 +55,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[F:/BlazorApp1/blazorapp1/Components/Pages/EmployeeSal.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFbXBsb3llZVNhbC5yYXpvcg==
+[F:/BlazorApp1/blazorapp1/Components/Pages/EmployeeLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFbXBsb3llZUxvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/BlazorApp1/blazorapp1/Components/Pages/Error.razor]

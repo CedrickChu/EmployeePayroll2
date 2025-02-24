@@ -1,6 +1,7 @@
 @page "/voucher"
 @rendermode InteractiveServer
 @inject IHttpClientFactory ClientFactory
+@inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JS
 @inject IJSRuntime JSRuntime
 @inject HttpClient Http
@@ -180,13 +181,8 @@
 
         try
         {
-            var handler = new HttpClientHandler()
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
-
-            var client = new HttpClient(handler);
-            var response = await client.GetAsync($"https://10.125.1.6:7087/api/My/getemployeeinfo/{userId}");
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetAsync($"api/My/getemployeeinfo/{userId}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -218,13 +214,8 @@
     {
         try
         {
-            var handler = new HttpClientHandler()
-            {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-            };
-
-            var client = new HttpClient(handler);
-            var response = await client.GetAsync($"https://10.125.1.6:7087/api/my/GetVouchers/{payeeId}");
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var response = await client.GetAsync($"api/my/GetVouchers/{payeeId}");
 
             if (response.IsSuccessStatusCode)
             {
