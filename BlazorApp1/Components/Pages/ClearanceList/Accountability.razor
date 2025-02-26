@@ -1,0 +1,477 @@
+@page "/clearance/accountability"
+@rendermode InteractiveServer
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory ClientFactory
+@inject IHttpClientFactory HttpClientFactory
+@inject IJSRuntime JS
+@inject ProtectedSessionStorage ProtectedSessionStore
+@inject IServiceProvider ServiceProvider
+@inject EmployeeService EmployeeService
+
+<style>
+
+    #basic-addon2:hover{
+        background-color: #d1d0d0;
+    }
+</style>
+<PageTitle>Accountability Template</PageTitle>
+<section class="clearance-page">
+    <div class="container" style="width:80%; margin:auto;">
+        <h1 class="modal-title">Clearance Accountability Template</h1>
+        <br>
+        <div class="position-relative border p-3 mb-3 rounded" id="accountabilityrow">
+                <span class="position-absolute top-0 start-0 translate-middle-y bg-white px-2 text-secondary ms-3">
+                        Search
+                </span>
+            <div class="row no-hover g-1 align-items-center">
+                <div class="col-auto">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="@selectedPeriod" readonly onclick="document.getElementById('basic-addon2').click()">
+                        <button class="input-group-text p-1" id="basic-addon2" @onclick="ShowPeriodModal">
+                            <img src="images/plus-lg.svg" style="cursor: pointer;">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-auto">
+                    @if (accountabilityDetails.Count == 0)
+                    {
+                        <p class="text-danger mb-0 ms-3">Accountability Preparation for this period has not been set
+                        </p>
+                    }
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped" id="dataTable" style="font-size: 14px;;">
+            <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
+                <tr class="text-center">
+                    <th>Accountability</th>
+                    <th>Employee</th>
+                    <th>Position</th>
+                    <th>Office/Department</th>
+                    <th>Insert Sub-Signatory</th>
+                    <th>Remarks</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if (accountabilityDetails != null && accountabilityDetails.Count > 0)
+                {
+                    @foreach (var accountability in accountabilityDetails)
+                    {
+                        var accountabilityDesc = accountabilities.FirstOrDefault(a => a.AccountabilityId ==
+                        accountability.AccountabilityId)?.Description ?? "N/A";
+
+
+                        <tr>
+                            <td>@accountabilityDesc</td>
+                            <td>
+                                @if (string.IsNullOrEmpty(accountability.EmployeeName)){
+                                    <span> ....</span>
+                                }
+                                else{
+                                    <span class="hover-underline text-primary" style="cursor: pointer;">
+                                        @accountability.EmployeeName
+                                    </span>
+                                }
+                            </td>
+                            <td>@accountability.Position</td>
+                            <td>@accountability.OfficeName</td>
+                            <td class="text-center"><span class="hover-underline text-danger" style="cursor: pointer;">
+                                    ....
+                                </span></td>
+                            <td><input type="text" style="display: none;"></td>
+                            <td>
+                                <button class="btn btn-primary" @onclick="() => ShowUpdateModal(accountability.AccountabilityRecordId)">Update</button>
+
+                                <button class="btn btn-danger">Delete</button>
+                                </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Period Modal -->
+<div class="modal fade" id="periodModal" tabindex="-1" aria-labelledby="periodModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Period</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    @if (period != null)
+                    {
+                        @foreach (var data in period)
+                        {
+                            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
+                                @onclick="() => OnPeriodChange(data.PeriodId)">
+                                <p class="mb-0">@data.Description</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Update Accountability Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Accountability</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <EditForm Model="selectedAccountability" onValid="updateAccountabilty">
+
+                <div class="modal-body">
+                    @if (selectedAccountability != null)
+                    {
+                        var accountabilityDesc = accountabilities.FirstOrDefault(a => a.AccountabilityId ==
+                            selectedAccountability.AccountabilityId)?.Description ?? "N/A";
+                        <div class="mb-3">
+                            <label class="form-label">Accountability</label>
+                            <select class="form-control" @bind="selectedAccountability.AccountabilityId">
+                                @foreach (var accountability in accountabilities)
+                                {
+                                    <option value="@accountability.AccountabilityId">@accountability.Description</option>
+                                }
+                            </select>
+                        </div>
+                        @if (string.IsNullOrEmpty(selectedAccountability.EmployeeName)){
+                            <label class="form-label">Employee</label>
+                            <span class="hover-underline text-primary form-control" style="cursor: pointer;"
+                            @onclick="OpenInsertEmployeeModal">
+                                Insert Employee/ Leave Blank (All Employee)..
+                            </span>
+                        }
+                        else{
+                            <div class="mb-3">
+                                <label class="form-label">Employee</label>
+                                <span class="hover-underline text-primary form-control bg-light" style="cursor: pointer;"
+                                    @onclick="OpenInsertEmployeeModal">
+                                    @selectedAccountability.EmployeeName
+                                </span>
+                            </div>
+                        }
+                        <div class="mb-3">
+                            <label class="form-label">Position</label>
+                            <textarea class="form-control" @bind="selectedAccountability.Position" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Office/Department</label>
+                            <textarea class="form-control" @bind="selectedAccountability.OfficeName" readonly></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Sub-Signatory</label>
+                            <textarea class="form-control" @bind="selectedAccountability.SubSignatoryName"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            <textarea class="form-control" @bind="selectedAccountability.Remarks"></textarea>
+                        </div>
+                    }
+                    else
+                    {
+                        <p>Loading...</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Insert Employee Modal -->
+<div class="modal fade" id="insertEmployeeModal" tabindex="-1" aria-labelledby="insertEmployeeModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Insert Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="position-relative border p-3 mb-3 rounded">
+                    <span class="position-absolute top-0 start-0 translate-middle-y bg-white px-2 text-secondary ms-3">
+                        Search
+                    </span>
+                    <form @onsubmit="PerformSearch">
+                        <div class="input-group">
+                            <input class="form-control" type="text" @bind="searchTerm" placeholder="Enter employee name" />
+                            <button type="submit" class="btn btn-secondary w-4">
+                                <img src="images/search.svg" style="cursor: pointer;">
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr class='text-center'>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office/Department</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <p style="color: red">@errorMessage</p>
+                        }
+                        @foreach (var emp in employeeList)
+                        {
+                            <tr class="@(confirmedEmployeeId == emp.EmployeeId ? "table-primary" : (tempSelectedEmployeeId == emp.EmployeeId ? "table-warning" : ""))"
+
+                                style="cursor: pointer;"
+                                @onclick="() => TempSelectEmployee(emp.EmployeeId)">
+                                <td >@emp.EmployeeName</td>
+                                <td>@emp.Position</td>
+                                <td>@emp.OfficeName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" @onclick="ConfirmSelection">Insert Employee</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int? selectedPeriodId;
+    private string? selectedPeriod;
+    private string? errorMessage;
+    private int? userId;
+    private int? AccountabilityTemplateId;
+    private int selectedRecordId;
+    private int? selectedEmployeeId;
+    private string searchTerm = string.Empty;
+    private bool searchExecuted = false;
+    private int? tempSelectedEmployeeId;
+    private int? confirmedEmployeeId;
+    private AccountabilityDetails selectedAccountability = new AccountabilityDetails();
+
+    private string updatedValue = "";
+    private List<EmployeeList> employeeList = new List<EmployeeList>();
+    
+    private List<Period> period = new();
+    private List<Accountabilities> accountabilities = new();
+    private List<AccountabilityDetails> accountabilityDetails = new();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAllAccountabilities();
+    }
+
+    private async Task ShowPeriodModal()
+    {
+        await GetAllPeriod();
+        await JS.InvokeVoidAsync("showModal", "#periodModal");
+    }
+
+    private async Task GetAllPeriod()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            period = await client.GetFromJsonAsync<List<Period>>("api/my/GetAllPeriods") ?? new List<Period>();
+
+            if (period.Count == 0)
+            {
+                errorMessage = "No fiscal years data found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching periods: {ex.Message}";
+        }
+    }
+
+    private async Task GetAllAccountabilities()
+    {
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            accountabilities = await client.GetFromJsonAsync<List<Accountabilities>>("api/my/Getallaccountabilities") ?? new List<Accountabilities>();
+
+            if (accountabilities.Count == 0)
+            {
+                errorMessage = "No accountability data found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching accountabilities: {ex.Message}";
+        }
+    }
+
+    private async Task OnPeriodChange(int periodId)
+    {
+        if (selectedPeriodId == periodId) return;
+
+        selectedPeriodId = periodId;
+        selectedPeriod = period.FirstOrDefault(p => p.PeriodId == periodId)?.Description ?? "";
+        accountabilityDetails.Clear();
+
+        var resultUserId = await ProtectedSessionStore.GetAsync<int?>("UserId");
+        userId = resultUserId.Success ? resultUserId.Value : null;
+
+        if (userId == null)
+        {
+            errorMessage = "User ID not found in session.";
+            return;
+        }
+
+        var templateId = await GetAccountabilityTemplateId();
+        AccountabilityTemplateId = templateId;
+
+        if (templateId != null)
+        {
+            await GetAccountabilityTemplateDetails(templateId);
+        }
+
+        await JS.InvokeVoidAsync("closeModal", "#periodModal");
+        StateHasChanged();
+    }
+
+    private async Task<int?> GetAccountabilityTemplateId()
+    {
+        if (selectedPeriodId == null || userId == null)
+        {
+            errorMessage = "Invalid Selected Period or User ID";
+            return null;
+        }
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            var templateId = await client.GetFromJsonAsync<int?>($"api/My/GetAccountabilityTemplateId/{selectedPeriodId}/{userId}");
+
+            if (templateId == null)
+            {
+                errorMessage = "No Accountability Template ID found.";
+                return null;
+            }
+
+            await ProtectedSessionStore.SetAsync("AccountabilityTemplateId", templateId);
+            return templateId;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching template ID: {ex.Message}";
+            return null;
+        }
+    }
+
+    private async Task GetAccountabilityTemplateDetails(int? AccountabilityTemplateId)
+    {
+        if (AccountabilityTemplateId == null)
+        {
+            errorMessage = "Accountability Template Not Found";
+            accountabilityDetails.Clear();
+            return;
+        }
+
+        try
+        {
+            var client = HttpClientFactory.CreateClient("MyApi");
+            accountabilityDetails = await client.GetFromJsonAsync<List<AccountabilityDetails>>($"api/My/GetAccountabilityTemplateDetails/{AccountabilityTemplateId}") ?? new List<AccountabilityDetails>();
+
+            if (accountabilityDetails.Count == 0)
+            {
+                errorMessage = "No Accountability Details data found.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error fetching accountability details: {ex.Message}";
+        }
+    }
+    private async Task ShowUpdateModal(int accountabilityRecordId)
+    {
+        selectedAccountability = accountabilityDetails.FirstOrDefault(a => a.AccountabilityRecordId == accountabilityRecordId);
+
+        if (selectedAccountability != null)
+        {
+            await JS.InvokeVoidAsync("showModal", "#updateModal");
+        }
+    }
+    private async Task OpenInsertEmployeeModal(){
+        await JS.InvokeVoidAsync("showModal", "#insertEmployeeModal");
+    }
+    private async Task PerformSearch()
+    {
+        errorMessage = "";
+        searchExecuted = true;
+
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            errorMessage = "Please enter a name.";
+            return;
+        }
+
+        employeeList = await EmployeeService.SearchEmployees(searchTerm);
+        
+        if (employeeList.Count == 0)
+        {
+            errorMessage = "No employees found.";
+        }
+    }
+    private void SelectEmployee(int employeeId)
+    {
+        selectedEmployeeId = employeeId;
+        Console.WriteLine($"Selected Employee ID: {selectedEmployeeId}");
+    }
+    
+    private void TempSelectEmployee(int employeeId)
+    {
+        tempSelectedEmployeeId = employeeId;
+        Console.WriteLine($"Temp Employee ID: {tempSelectedEmployeeId}");
+    }
+
+    private async Task ConfirmSelection()
+    {
+        if (tempSelectedEmployeeId == null) return;
+
+        var selectedEmployee = employeeList.FirstOrDefault(emp => emp.EmployeeId == tempSelectedEmployeeId);
+        
+        if (selectedEmployee != null)
+        {
+            confirmedEmployeeId = selectedEmployee.EmployeeId;
+            selectedAccountability.EmployeeName = selectedEmployee.EmployeeName;
+            selectedAccountability.Position = selectedEmployee.Position;
+            selectedAccountability.OfficeName = selectedEmployee.OfficeName;
+        }
+
+        searchTerm = string.Empty;
+        employeeList.Clear();
+
+        await JS.InvokeVoidAsync("closeModal", "#insertEmployeeModal");
+    }
+
+    private async Task updateAccountabilty()
+        {
+            Console.WriteLine("Updated"!);
+        }
+    }
+
+<script src="site.js"></script>

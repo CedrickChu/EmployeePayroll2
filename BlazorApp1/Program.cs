@@ -51,6 +51,8 @@ builder.Services.AddSingleton<UserService>();
 builder.Services.AddSingleton<EncryptionHelper>();
 builder.Services.AddSingleton<ModalService>();
 builder.Services.AddSingleton<AppState>();
+builder.Services.AddScoped<EmployeeService>();
+
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
 

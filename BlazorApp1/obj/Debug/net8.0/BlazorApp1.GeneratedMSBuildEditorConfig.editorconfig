@@ -51,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDbGVhcmFuY2UucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/BlazorApp1/blazorapp1/Components/Pages/ClearanceList/Accountability.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDbGVhcmFuY2VMaXN0XEFjY291bnRhYmlsaXR5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/BlazorApp1/blazorapp1/Components/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 

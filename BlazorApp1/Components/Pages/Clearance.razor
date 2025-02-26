@@ -6,7 +6,8 @@
 @inject IHttpClientFactory HttpClientFactory
 @inject IJSRuntime JS
 @inject ProtectedSessionStorage ProtectedSessionStore
-
+@inject NavigationManager Navigation
+ 
 <style>
     .row:hover {
         background-color: #d1d0d0;
@@ -97,124 +98,6 @@
     </div>
 </section>
 
-<!-- Accountability Modal -->
-<div class="modal fade" id="accountabilityModal" tabindex="-1" aria-labelledby="accountabilityModalTitle"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Clearance Accountability Template</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="position-relative border p-3 mb-3 rounded" id="accountabilityrow">
-
-
-
-                    <div class="row no-hover g-1 align-items-center">
-                        <div class="col-auto">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="@selectedPeriod" readonly disabled>
-
-
-                                <button class="input-group-text p-1" id="basic-addon2">
-                                    <img src="images/plus-lg.svg" style="cursor: pointer;" @onclick="ShowPeriodModal">
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="col-auto">
-                            @if (accountabilityDetails.Count == 0)
-                            {
-                                <p class="text-danger mb-0 ms-3">Accountability Preparation for this period has not been set
-                                </p>
-                            }
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped" id="dataTable" style="font-size: 14px;;">
-                    <thead style="position: sticky; top: 0; z-index: 1; margin: 30px 30px;">
-                        <tr class="text-center">
-                            <th>Accountability</th>
-                            <th>Employee</th>
-                            <th>Position</th>
-                            <th>Office/Department</th>
-                            <th>Insert Sub-Signatory</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        @if (accountabilityDetails != null && accountabilityDetails.Count > 0)
-                        {
-                            @foreach (var accountability in accountabilityDetails)
-                            {
-                                var accountabilityDesc = accountabilities.FirstOrDefault(a => a.AccountabilityId ==
-                                accountability.AccountabilityId)?.Description ?? "N/A";
-
-
-                                <tr>
-                                    <td>@accountabilityDesc</td>
-                                    <td>
-                                        @if (string.IsNullOrEmpty(accountability.EmployeeName)){
-                                            <span class="hover-underline text-primary" style="cursor: pointer;"
-                                            @onclick="OpenInsertEmployeeModal">
-                                            Insert Employee/ Leave Blank (All Employee)..
-                                        </span>
-                                        }
-                                        else{
-                                            <span class="hover-underline text-primary" style="cursor: pointer;"
-                                            @onclick="OpenInsertEmployeeModal">
-                                            @accountability.EmployeeName
-                                            </span>
-                                        }
-                                    </td>
-                                    <td>@accountability.Position</td>
-                                    <td>@accountability.OfficeName</td>
-                                    <td><span class="hover-underline text-danger" style="cursor: pointer;"
-                                            @onclick="OpenInsertEmployeeModal">
-                                            Insert Sub-Signatory/Leave Blank(default)
-                                        </span></td>
-                                    <td><input type="text" style="display: none;"></td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Period Modal -->
-<div class="modal fade" id="periodModal" tabindex="-1" aria-labelledby="periodModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Select Period</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    @if (period != null)
-                    {
-                        @foreach (var data in period)
-                        {
-                            <div class="row border-bottom border-2 align-items-center py-2" style="cursor: pointer;"
-                                @onclick="() => OnPeriodChange(data.PeriodId)">
-                                <p class="mb-0">@data.Description</p>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Insert Employee Modal -->
 <div class="modal fade" id="insertEmployeeModal" tabindex="-1" aria-labelledby="insertEmployeeModalTitle"
@@ -294,207 +177,28 @@
         switch (action)
         {
             case "Review Clearance Request":
-                await JS.InvokeVoidAsync("showModal", "#reviewClearanceModal");
+                Navigation.NavigateTo("/");
                 break;
             case "View My Clearances":
-                await JS.InvokeVoidAsync("showModal", "#viewClearancesModal");
+                Navigation.NavigateTo("/");
                 break;
             case "Prepare Accountabilities":
-                await JS.InvokeVoidAsync("showModal", "#accountabilityModal");
-                await GetAllAccountabilities();
+                Navigation.NavigateTo("/clearance/accountability");
                 break;
             case "Create/View Clearance Template":
-                await JS.InvokeVoidAsync("showModal", "#clearanceTemplateModal");
+                Navigation.NavigateTo("/");                
                 break;
             case "Clearance Purpose List":
-                await JS.InvokeVoidAsync("showModal", "#clearancePurposeModal");
+                Navigation.NavigateTo("/");
                 break;
             case "Clearance Office List":
-                await JS.InvokeVoidAsync("showModal", "#clearanceOfficeModal");
+                Navigation.NavigateTo("/");
                 break;
             default:
                 Console.WriteLine("Unknown action: " + action);
                 break;
         }
     }
-
-    private async Task ShowPeriodModal()
-    {
-        await JS.InvokeVoidAsync("showModal", "#periodModal");
-        await GetAllPeriod();
-    }
-    private async Task selectPeriod(string? description)
-    {
-        if (!string.IsNullOrEmpty(description))
-        {
-            selectedPeriod = description;
-            await JS.InvokeVoidAsync("closeModal", "#periodModal");
-            StateHasChanged();
-        }
-    }
-
-    private async Task OpenInsertEmployeeModal()
-    {
-        await JS.InvokeVoidAsync("showModal", "#insertEmployeeModal");
-    }
-
-    private async Task GetAllPeriod()
-    {
-        try
-        {
-            var client = HttpClientFactory.CreateClient("MyApi");
-            var response = await client.GetAsync("api/my/GetAllPeriods");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                period = JsonSerializer.Deserialize<List<Period>>(json);
-
-                if (period == null || period.Count == 0)
-                {
-                    errorMessage = "Unable to parse or empty fiscal years data.";
-                }
-            }
-            else
-            {
-                errorMessage = $"Failed to load fiscal years data. Status code: {response.StatusCode}";
-            }
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"An error occurred: {ex.Message}";
-        }
-    }
-    private async Task GetAllAccountabilities()
-    {
-        try
-        {
-            var client = HttpClientFactory.CreateClient("MyApi");
-            var response = await client.GetAsync("api/my/Getallaccountabilities");
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                accountabilities = JsonSerializer.Deserialize<List<Accountabilities>>(json);
-                if (accountabilities == null || accountabilities.Count == 0)
-                {
-                    errorMessage = "Unable to parse or empty Accountability data.";
-                }
-            }
-            else
-            {
-                errorMessage = $"Failed to load accountability data. Status code: {response.StatusCode}";
-            }
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"An error occurred: {ex.Message}";
-        }
-    }
-    private async Task OnPeriodChange(int periodId)
-    {
-        if (selectedPeriodId == periodId)
-            return;
-
-        selectedPeriodId = periodId;
-        selectedPeriod = period?.FirstOrDefault(p => p.PeriodId == periodId)?.Description ?? "";
-
-        accountabilityDetails.Clear();
-        StateHasChanged();
-
-        var resultUserId = await ProtectedSessionStore.GetAsync<int?>("UserId");
-        userId = resultUserId.Success ? resultUserId.Value : null;
-
-        if (userId == null)
-        {
-            errorMessage = "User ID not found in session.";
-            return;
-        }
-
-        var templateId = await GetAccountabilityTemplateId();
-        AccountabilityTemplateId = templateId;
-
-        await JS.InvokeVoidAsync("closeModal", "#periodModal");
-
-        if (templateId != null)
-        {
-            await GetAccountabilityTemplateDetails(templateId);
-        }
-
-        StateHasChanged();
-    }
-    private async Task<int?> GetAccountabilityTemplateId()
-    {
-        if (selectedPeriodId == null || userId == null)
-        {
-            errorMessage = "Invalid Selected Period or User ID";
-            return null;
-        }
-
-        errorMessage = null;
-
-        try
-        {
-            var client = HttpClientFactory.CreateClient("MyApi");
-            var response = await client.GetFromJsonAsync<int?>($"api/My/GetAccountabilityTemplateId/{selectedPeriodId}/{userId}");
-
-            if (response == null)
-            {
-                errorMessage = "No Accountability Template Id found.";
-                return null;
-            }
-
-            await ProtectedSessionStore.SetAsync("AccountabilityTemplateId", response);
-            return response;
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"An error occurred: {ex.Message}";
-            return null;
-        }
-    }
-    private async Task GetAccountabilityTemplateDetails(int? AccountabilityTemplateId)
-    {
-        if (AccountabilityTemplateId == null)
-        {
-            errorMessage = "Accountability Template Not Found";
-            accountabilityDetails.Clear();
-            StateHasChanged();
-            return;
-        }
-
-        errorMessage = null;
-
-        try
-        {
-            var client = HttpClientFactory.CreateClient("MyApi");
-            var response = await client.GetAsync($"api/My/GetAccountabilityTemplateDetails/{AccountabilityTemplateId}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                var json = await response.Content.ReadAsStringAsync();
-                accountabilityDetails = JsonSerializer.Deserialize<List<AccountabilityDetails>>(json) ?? new
-                List<AccountabilityDetails>();
-
-                if (accountabilityDetails.Count == 0)
-                {
-                    errorMessage = "No Accountability Details data found for this employee.";
-                }
-            }
-            else
-            {
-                errorMessage = "Failed to fetch payroll details.";
-            }
-        }
-        catch (Exception ex)
-        {
-            errorMessage = $"An error occurred: {ex.Message}";
-        }
-
-        StateHasChanged(); // Ensure UI updates
-    }
-
-
-
 
 }
 
